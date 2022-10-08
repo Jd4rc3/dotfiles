@@ -1,5 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -105,6 +104,8 @@ alias dot="cd ~/.dotfiles"
 alias kat="bat"
 alias i3rc="nvim ~/.dotfiles/i3/config"
 alias kittyrc="nvim ~/.dotfiles/kitty/kitty.conf"
+alias dev="cd ~/Development"
+alias ws="cd ~/Development/workspace"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
