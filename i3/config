@@ -325,7 +325,7 @@ for_window [class=Thunderbird] focus
 for_window [class=TelegramDesktop] focus
 
 # remove window title bar
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 3
 
 ##############
 # compositor #
