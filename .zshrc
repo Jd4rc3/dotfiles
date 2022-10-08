@@ -98,7 +98,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases #
 ###################
 alias zshrc="nvim ~/.zshrc"
-alias v="nvim"
+alias v="lvim"
 alias vim="nvim"
 alias dot="cd ~/.dotfiles"
 alias kat="bat"
