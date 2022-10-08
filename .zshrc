@@ -104,6 +104,8 @@ alias dot="cd ~/.dotfiles"
 alias kat="bat"
 alias i3rc="nvim ~/.dotfiles/i3/config"
 alias kittyrc="nvim ~/.dotfiles/kitty/kitty.conf"
+alias dev="cd ~/Development"
+alias ws="cd ~/Development/workspace"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
