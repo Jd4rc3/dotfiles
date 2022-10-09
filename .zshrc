@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 ###################
-# Aliases         #
+#     Aliases     #
 ###################
 alias zshrc="nvim ~/.zshrc"
 alias v="lvim"
@@ -108,7 +108,7 @@ alias dev="cd ~/Development"
 alias ws="cd ~/Development/workspace"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
-
+alias z="zathura"
 #####################
 #Start up in session#
 #####################
