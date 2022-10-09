@@ -95,7 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 ###################
-# Aliases #
+# Aliases         #
 ###################
 alias zshrc="nvim ~/.zshrc"
 alias v="lvim"
@@ -108,6 +108,11 @@ alias dev="cd ~/Development"
 alias ws="cd ~/Development/workspace"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
+
+#####################
+#Start up in session#
+#####################
+eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
