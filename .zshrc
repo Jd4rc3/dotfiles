@@ -109,6 +109,7 @@ alias ws="cd ~/Development/workspace"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 alias z="zathura"
+alias todo="glow ~/Development/workspace/TODO.md"
 #####################
 #Start up in session#
 #####################
