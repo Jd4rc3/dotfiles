@@ -75,6 +75,7 @@ plugins=(
 	history
 	sudo
 	web-search
+	fast-syntax-highlighting
 	copydir
 	copyfile
 	copydir
