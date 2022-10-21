@@ -10,9 +10,14 @@ filetype plugin indent on
 
 set encoding=UTF-8
 set undofile
-set relativenumber
+set number
 set nu rnu
 set mouse=a
+set ignorecase
+set background=dark
+set shiftwidth=4
+set smartcase
+set nobackup
 
 " Current directory = opened file directory
 autocmd BufEnter * lcd %:p:h
@@ -194,7 +199,7 @@ vnoremap p "+p
 map <M-p> <M-P><Esc>
 map <M-y> <M-Y><Esc>
 
-source $HOME/.config/nvim/colorscheme.vim
+source $HOME/.dotfiles/nvim/colorscheme.vim
 
 " minimap config
 "let g:minimap_auto_start = 1
