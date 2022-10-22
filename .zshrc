@@ -67,6 +67,9 @@ alias li="exa --icons"
 alias todo="glow ~/Development/workspace/TODO.md"
 alias ntodo="nvim ~/Development/workspace/TODO.md"
 
+# Zoxie
+eval "$(zoxide init zsh)"
+
 
 #Reloads zsh config
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
