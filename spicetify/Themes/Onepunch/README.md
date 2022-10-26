@@ -2,24 +2,45 @@
 
 ## Screenshots
 
-![OnepunchHome](./OnepunchHome.png)
+#### Dark
+
+|   ![dark_home](./screenshots/dark_home.png)   |   ![dark_album](./screenshots/dark_album.png)   | ![dark_playlist](./screenshots/dark_playlist.png) |
+| :-------------------------------------------: | :---------------------------------------------: | :-----------------------------------------------: |
+|                     home                      |                      album                      |                     playlist                      |
+| ![dark_podcast](screenshots/dark_podcast.png) | ![dark_profile](./screenshots/dark_profile.png) |
+|                    podcat                     |                     profile                     |
+
+#### Light
+
+|   ![light_home](./screenshots/light_home.png)   |   ![light_album](./screenshots/light_album.png)   | ![light_playlist](./screenshots/light_playlist.png) |
+| :---------------------------------------------: | :-----------------------------------------------: | :-------------------------------------------------: |
+|                      home                       |                       album                       |                      playlist                       |
+| ![light_podcast](screenshots/light_podcast.png) | ![light_profile](./screenshots/light_profile.png) |
+|                     podcat                      |                      profile                      |
 
 ## More
 
-#### Details
+### About
 
-&nbsp;&nbsp;&nbsp;&nbsp;A project intended to redesign the Spotify app.As you know Saitama is only a "hero for fun", this is going to take a while even though he can finish an enemy with just one punch. I hope you'll like it! Suggestions will always help me to make it look better.
-So, feel free to drop your feedback.
+A simple gruvified spotify theme.
 
-#### Changelogs
+### Information
 
-Wondering what is changed, then check this [file](./changelog.md).
+*   To apply this theme:
 
-#### Contact
+    ```shell
+    # for dark theme
+    spicetify config current_theme Onepunch color_scheme dark
+    spicetify apply
 
-Click **[here](https://t.me/saitama_a)** for *feedback*, *sharing new ideas* and *reporting bugs* only.  
-Format for bug reporting:  
+    #for light theme
+    spicetify config current_theme Onepunch color_scheme light
+    spicetify apply
 
-     Operating System(!important):
+    ```
 
-     Description of issue:
+*   Tested on macOS only and pretty much everything worked. ﾍ(･\_|
+
+### Contact
+
+Go **[here](https://github.com/okarin001/Onepunch/issues)** and *check/create* an issue in case you face any problem.
