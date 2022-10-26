@@ -24,20 +24,16 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+#Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 ###################
 #     Aliases     #
 ###################
@@ -48,8 +44,9 @@ alias cp="cp -v"
 alias mv="mv -vi"
 alias rm="rm -vi"
 alias current-milis="data +%s%3N"
-alias v="lvim"
+alias lv="lvim"
 alias vim="nvim"
+alias v="nvim"
 alias dot="cd ~/.dotfiles"
 alias kat="bat"
 alias kittyrc="nvim ~/.dotfiles/kitty/kitty.conf"
@@ -66,6 +63,8 @@ alias l="exa --icons -la"
 alias li="exa --icons"
 alias todo="glow ~/Development/workspace/TODO.md"
 alias ntodo="nvim ~/Development/workspace/TODO.md"
+alias lg="lazygit"
+alias ld="lazydocker"
 
 # Zoxie
 eval "$(zoxide init zsh)"
