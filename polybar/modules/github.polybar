@@ -1,0 +1,41 @@
+[module/github]
+type = internal/github
+
+; Accessing an access token stored in file
+token = ${file:/home/arce/.gnupg/notifications.token}
+
+; Accessing an access token stored in an environment variable
+;token = ${env:GITHUB_ACCESS_TOKEN}
+
+; The github user for the token
+; Effectively required; otherwise the module uses a deprecated method of fetching
+; notifications, which has stopped working
+user = Jd4rc3 
+; Whether empty notifications should be displayed or not
+empty-notifications = false
+
+; Number of seconds in between requests
+interval = 10
+
+; Github API URL
+; Default: 
+api-url = https://api.github.com/
+
+; Available tags:
+;   <label> (default)
+format = <label>
+
+; Available tokens:
+;   %notifications% (default)
+; Default: Notifications: %notifications%
+label =  %notifications%
+
+; Used when GitHub can't be reached
+; Available tags:
+;   <label-offline> (default)
+format-offline = <label-offline>
+
+; Available tokens:
+;   None
+; Default: Offline
+label-offline = Offline
