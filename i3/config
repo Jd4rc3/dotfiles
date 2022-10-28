@@ -477,26 +477,28 @@ client.urgent		    $urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 # bar settings (input comes from i3blocks) #
 ############################################
 
-bar {
-    font pango: Noto Sans Regular 10
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-    position top
-    #i3bar_command i3bar --transparency
-    tray_output primary
-    tray_padding 0
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-    strip_workspace_numbers yes
-    colors {
-        separator          $purple
-        background         $darkgrey
-        statusline         $white
-#                          		border 		        bg		txt		indicator
-        focused_workspace	$mediumgrey	   	    $grey		$darkgrey	$purple
-        active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
-        inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
-        urgent_workspace	$urgentred	    	$urgentred	$white		$purple
-	}
-}
+#bar {
+#    font pango: Noto Sans Regular 10
+#    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#    position top
+#    #i3bar_command i3bar --transparency
+#    tray_output primary
+#    tray_padding 0
+#
+#    strip_workspace_numbers yes
+#    colors {
+#        separator          $purple
+#        background         $darkgrey
+#        statusline         $white
+##                          		border 		        bg		txt		indicator
+#        focused_workspace	$mediumgrey	   	    $grey		$darkgrey	$purple
+#        active_workspace	$lightblue      	$mediumgrey	$darkgrey	$purple
+#        inactive_workspace	$darkgrey   		$darkgrey	$grey		$purple
+#        urgent_workspace	$urgentred	    	$urgentred	$white		$purple
+#	}
+#}
 
 #####################################
 # Application menu handled by rofi: #
