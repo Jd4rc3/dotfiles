@@ -83,7 +83,7 @@ label-focused-padding = 1.5
 ;   %index%
 ;   %output%
 ; Default: %icon% %name%
-label-unfocused = ""
+label-unfocused = %name%
 label-unfocused-padding = 0
 
 ; Available tokens:
@@ -94,7 +94,7 @@ label-unfocused-padding = 0
 ; Default: %icon% %name%
 label-visible = %name%
 label-visible-underline = #555555
-label-visible-padding = 4
+label-visible-padding = 0
 
 ; Available tokens:
 ;   %name%
