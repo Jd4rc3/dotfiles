@@ -66,6 +66,9 @@ alias ntodo="nvim ~/Development/workspace/TODO.md"
 alias lg="lazygit"
 alias ld="lazydocker"
 
+# Spicetify alias
+alias spcApply="spicetify apply"
+
 # Zoxie
 eval "$(zoxide init zsh)"
 
@@ -83,7 +86,7 @@ alias myps='watch ps o pid,ppid,stat,comm'
 alias sizeof='du -sh $1'
 
 # spiecitify
-alias spicetify='$HOME/spicetify-cli/spicetify'
+#alias spicetify='$HOME/spicetify-cli/spicetify'
 
 alias findman="man -k . | rofi -dmenu -config ~/.config/rofi/rofidmenu.rasi | awk '{print $1}' | xargs -r man -Tpdf | zathura -"
 
@@ -132,6 +135,11 @@ eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 #pygment config#
 ################
 #ZSH_COLORIZE_STYLE="colorful"
+
+################
+#   EXPORTS    #
+################
+export PATH="$HOME/.scripts:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
