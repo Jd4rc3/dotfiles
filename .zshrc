@@ -13,6 +13,7 @@ plugins=(
 	copypath
 	copybuffer
 	dirhistory
+    extract
 	);
 
 source $ZSH/oh-my-zsh.sh
