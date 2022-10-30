@@ -227,7 +227,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # open new empty workspace
-bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
+#bindsym $mod+Shift+n exec ~/.config/i3/scripts/empty_workspace
 
 # Multimedia Keys
 
@@ -248,6 +248,9 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+bindsym $mod+Shift+n exec playerctl next
+bindsym $mod+Shift+p exec playerctl previous
+
 # Redirect sound to headphones
 #bindsym $mod+p exec /usr/local/bin/switch-audio-port
 
@@ -260,7 +263,7 @@ bindsym --release $mod+Shift+s exec ~/.scripts/screenshot_region.sh
 bindsym --release $mod+p exec ~/.scripts/screenshot_window.sh
 
 # Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
+#bindsym $mod+Shift+p exec ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
