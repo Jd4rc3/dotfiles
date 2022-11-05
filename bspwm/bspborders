@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source $HOME/.scripts/colors
+#source $HOME/.scripts/colors
 
 c_out="0x282828"
 c_focused="0x928374"
@@ -20,8 +20,7 @@ tempprint() {
 bspc subscribe node_geometry node_focus | while read var; do
 #  event=$(echo "$var" | awk '{print $1}')
 #  echo "event: $event"
-  # focus colors on focused window
+# focus colors on focused window
   chwb2 -i 4 -o 4 -I $c_focused -O $c_out $(pfw)
   unfocus
-  
 done
