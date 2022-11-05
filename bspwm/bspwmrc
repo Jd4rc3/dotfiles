@@ -1,0 +1,51 @@
+#! /bin/sh
+
+#
+#                 ░█▀▄░█▀▀░█▀█░█░█░█▄█
+#                 ░█▀▄░▀▀█░█▀▀░█▄█░█░█
+#                 ░▀▀░░▀▀▀░▀░░░▀░▀░▀░▀
+#
+
+$HOME/.scripts/custom-autostart
+
+#nm-applet &
+xsetroot -cursor_name left_ptr
+sxhkd &
+picom --config ~/.config/picom/picom.conf &
+nitrogen --restore
+wmname LG3D &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dex --autostart --environment bspwm
+xset s 480 dpms 600 600 600
+dbus-launch dunst --config ~/.config/dunst/dunstrc
+#xset -dpms s off & # disable screen blanking
+#nautilus --gapplication-service &
+
+# Swallow
+pgrep bspswallow || nohup ~/.scripts/bspswallow &
+
+# Default state/workspace for applications
+bspc rule -a Chromium desktop='^2'
+bspc rule -a discord desktop='^7'
+bspc rule -a mplayer2 state=floating
+bspc rule -a nomacs state=floating
+bspc rule -a nomacs state=floating
+bspc rule -a "Image Lounge" state=floating
+bspc rule -a Zathura state=tiled
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc config pointer_modifier mod4
+
+#sleep 0.69
+
+# Autostart applications:
+
+# Start Polybar
+$HOME/.config/polybar/launch.sh &
+
+sleep 1 && wal -R
+
+# Start firefox
+#/bin/bash -c "bspc desktop -f '^2' --follow ; bspc rule -a \* -o node=@$(bspc query -D -d):.focused split_dir=south follow=off ; firefox file:///home/$USER/.config/startpage/index.html &" &
+#bspc desktop -f '^2' --follow &
+
