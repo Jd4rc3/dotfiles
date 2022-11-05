@@ -1,0 +1,36 @@
+[module/bspwm]
+type = internal/bspwm
+;ws-icon-0 = TERM;%{F#A3BE8C}
+;ws-icon-1 = WEB;%{F#D08770}
+;ws-icon-2 = CODE;%{F#81A1C1}﬏
+;ws-icon-3 = MISC;%{F#EBCB8B}
+;ws-icon-4 = EDIT;%{F#B48EAD}
+;ws-icon-5 = CHAT;%{F#88C0D0}
+;ws-icon-6 = DISCORD;%{F#D08770}ﭮ
+;ws-icon-7 = MUSIC;%{F#A3BE8C}
+;ws-icon-default = ♟
+
+label-focused = "%name%"
+label-focused-background = ${colors.black}
+;label-focused-underline= ${colors.cyan}
+label-focused-foreground = ${colors.green}
+label-focused-padding = 2
+
+label-occupied = %name%
+label-occupied-background = ${colors.black}
+label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-background = ${colors.black}
+label-urgent-foreground = ${colors.red}
+label-urgent-padding = 2
+
+label-empty = %name% 
+label-empty-background = ${colors.black}
+label-empty-foreground = ${colors.background-alt}
+label-empty-padding = 2
+
+
+; Separator in between workspaces
+label-separator = 
