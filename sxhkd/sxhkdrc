@@ -28,6 +28,13 @@ super + d
 	rofi -modi drun -show drun \
   -config ~/.config/rofi/rofidmenu.rasi
 
+super + m
+    rofi -modi emoji -show emoji -config ~/.config/rofi/rofidmenu.rasi
+
+super + v
+    rofi -modi "clipboard:greenclip print" -show clipboard \
+		-config ~/.config/rofi/rofidmenu.rasi
+
 # --------- FUNCTIONALITIES ---------
 
 # pacman update
