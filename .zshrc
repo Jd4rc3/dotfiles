@@ -1,6 +1,6 @@
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="half-life-custom"
+ZSH_THEME="custom-prompt"
 
 plugins=(
 	zsh-autosuggestions
@@ -65,10 +65,35 @@ alias j="java -jar"
 alias y="yay"
 alias l="exa --icons -la"
 alias li="exa --icons"
+alias ls='lsd -a --group-directories-first'
+alias ll='lsd -la --group-directories-first'
 alias todo="glow ~/Development/workspace/TODO.md"
 alias ntodo="nvim ~/Development/workspace/TODO.md"
 alias lg="lazygit"
 alias ld="lazydocker"
+
+#utilities
+alias mirrors="sudo reflector --verbose --latest 5 --country 'United States' --age 6 --sort rate --save /etc/pacman.d/mirrorlist"
+
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+alias maintenance="yay -Sc && sudo pacman -Scc"
+
+alias purge="sudo pacman -Rns $(pacman -Qtdq) ; sudo fstrim -av"
+
+alias aur-update="yay -Syu"
+
+alias pacman-update="pacman -Syu"
+
+alias vm-on="sudo systemctl start libvirtd.service"
+
+alias vm-off="sudo systemctl stop libvirtd.service"
+
+alias start-cine="sudo systemctl start minidlna.service;sudo minidlnad -R;sudo systemctl restart minidlna.service"
+
+alias stop-cine="sudo systemctl stop minidlna.service"
+
+alias musica="ncmpcpp"
 
 # Spicetify alias
 alias spcApply="spicetify apply"
@@ -103,9 +128,6 @@ alias cal="cal -m -y"
 # num of installed packages
 alias packages='expac -s "%-45n %m" -H M | sort -rhk 2 | nvim'
 
-# opens a random pornhub video
-alias porn='mpv "http://www.pornhub.com/random"'
-
 # matrix effect (better than cmatrix since it supports terminal transparency)
 alias matrix='unimatrix -s 96'
 alias cmatrix='unimatrix -s 96'
@@ -115,7 +137,6 @@ alias jpop='mpv --shuffle $HOME/Music/JapanesePop'
 
 # rock
 alias rock='mpv --shuffle $HOME/Music/ROCK'
-
 #
 # -------------------- KEYBINDINGS --------------------
 #
