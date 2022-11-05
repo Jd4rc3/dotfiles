@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 #
 #                 ░█▀▄░█▀▀░█▀█░█░█░█▄█
@@ -6,19 +6,20 @@
 #                 ░▀▀░░▀▀▀░▀░░░▀░▀░▀░▀
 #
 
-$HOME/.scripts/custom-autostart
+#$HOME/.scripts/custom-autostart
 
 #nm-applet &
 xsetroot -cursor_name left_ptr
+greenclip daemon>/dev/null &
 sxhkd &
-picom --config ~/.config/picom/picom.conf &
+#picom --config ~/.config/picom/picom.conf &
 nitrogen --restore
 wmname LG3D &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dex --autostart --environment bspwm
-xset s 480 dpms 600 600 600
+#xset s 480 dpms 600 600 600
 dbus-launch dunst --config ~/.config/dunst/dunstrc
-#xset -dpms s off & # disable screen blanking
+xset -dpms s off & # disable screen blanking
 #nautilus --gapplication-service &
 
 # Swallow
@@ -43,7 +44,9 @@ bspc config pointer_modifier mod4
 # Start Polybar
 $HOME/.config/polybar/launch.sh &
 
-sleep 1 && wal -R
+#sleep 1 && wal -R
+
+bspc config pointer_motion_interval 40
 
 # Start firefox
 #/bin/bash -c "bspc desktop -f '^2' --follow ; bspc rule -a \* -o node=@$(bspc query -D -d):.focused split_dir=south follow=off ; firefox file:///home/$USER/.config/startpage/index.html &" &
