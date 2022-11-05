@@ -221,6 +221,7 @@ girara
 git
 gjs
 glances
+glew
 glib-networking
 glib2
 glib2-docs
@@ -744,6 +745,7 @@ lzo
 lzop
 m4
 mailcap
+maim
 make
 man-db
 man-pages
@@ -1128,6 +1130,7 @@ shadow
 shared-mime-info
 slang
 sleuthkit
+slop
 smartmontools
 smbclient
 snappy
