@@ -40,6 +40,8 @@ fi
 ###################
 alias zshrc="nvim ~/.zshrc"
 alias i3rc="nvim ~/.dotfiles/i3/config"
+alias bspwmrc="nvim ~/.dotfiles/bspwm/bspwmrc"
+alias sxhkdrc="nvim ~/.dotfiles/sxhkd/sxhkdrc"
 alias rangerc="nvim $HOME/.config/ranger"
 alias kittyrc="nvim ~/.dotfiles/kitty/kitty.conf"
 alias polybarc="code ~/.dotfiles/polybar/"
@@ -172,3 +174,9 @@ fi
 #######
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh
+
+#######
+# fzf #
+#######
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
