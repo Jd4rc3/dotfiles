@@ -520,6 +520,7 @@ libid3tag
 libidn
 libidn2
 libiec61883
+libimagequant
 libimobiledevice
 libindicator-gtk3
 libinih
@@ -948,6 +949,7 @@ python-chardet
 python-colorama
 python-cryptography
 python-defusedxml
+python-docopt
 python-future
 python-gobject
 python-idna
@@ -963,6 +965,7 @@ python-markupsafe
 python-more-itertools
 python-ordered-set
 python-packaging
+python-pillow
 python-pip
 python-ply
 python-psutil
@@ -985,6 +988,7 @@ python-typing_extensions
 python-urllib3
 python-validate-pyproject
 python-wheel
+python-xlib
 python-yaml
 python-zipp
 qbittorrent
@@ -1199,6 +1203,7 @@ twolame
 tzdata
 uchardet
 udisks2
+ueberzug
 unibilium
 unrar
 unzip
