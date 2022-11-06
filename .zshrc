@@ -83,7 +83,7 @@ alias purge="sudo pacman -Rns $(pacman -Qtdq) ; sudo fstrim -av"
 
 alias aur-update="yay -Syu"
 
-alias pacman-update="pacman -Syu"
+alias pacman-update="sudo pacman -Syu"
 
 alias vm-on="sudo systemctl start libvirtd.service"
 
