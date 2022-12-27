@@ -1,0 +1,7 @@
+#!/bin/bash
+current_bright=`brightnessctl g`
+ten_percent=25
+
+brightnessctl s $(expr $current_bright + $ten_percent)
+
+notify-send "盛  +"
