@@ -1,0 +1,13 @@
+#!/bin/bash
+current_bright=`brightnessctl g`
+
+if [[ current_bright -le 10 ]]
+then
+  exit
+fi
+
+ten_percent=25
+
+brightnessctl s $(expr $current_bright - $ten_percent)
+
+notify-send "盛  -"

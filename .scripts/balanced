@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo systemctl stop auto-cpufreq.service
+sudo auto-cpufreq --install
