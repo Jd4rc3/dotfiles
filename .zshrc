@@ -1,6 +1,6 @@
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="custom-prompt"
+ZSH_THEME=""
 
 plugins=(
 	zsh-autosuggestions
@@ -54,8 +54,9 @@ alias vim="nvim"
 alias v="nvim"
 alias dot="cd ~/.dotfiles"
 alias kat="bat"
-alias dev="cd ~/Development"
-alias ws="cd ~/Development/workspace"
+alias ws="cd ~/workspace"
+alias dw="cd ~/Downloads/"
+alias repos="cd ~/Downloads/.repos/"
 alias icat="kitty +kitten icat"                                               
 alias d="kitty +kitten diff"
 alias za="zathura"
@@ -71,8 +72,20 @@ alias todo="glow ~/Development/workspace/TODO.md"
 alias ntodo="nvim ~/Development/workspace/TODO.md"
 alias lg="lazygit"
 alias ld="lazydocker"
+alias hyprcfg="lvim ~/.config/hypr/hyprland.conf"
+alias wal="lvim ~/.config/hypr/hyprpaper.conf"
+alias lsgh="gh repo-fzf"
+
+#
+alias main="ssh-add -D && ssh-add ~/.ssh/edu"
+alias second="ssh-add -D && ssh-add ~/.ssh/id_ed25519"
+alias sofka="ssh-add -D && ssh-add ~/.ssh/sofka"
 
 #utilities
+alias cpu-status="auto-cpufreq --stats"
+
+alias check-battery="cat /sys/class/power_supply/BAT0/status"
+
 alias mirrors="sudo reflector --verbose --latest 5 --country 'United States' --age 6 --sort rate --save /etc/pacman.d/mirrorlist"
 
 alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg"
@@ -201,3 +214,33 @@ fi
 #######
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
+
+###########
+#Starship#
+##########
+eval "$(starship init zsh)"
+
+#########################
+#Add .NET Core SDK tools#
+#########################
+export DOTNET_ROOT=$HOME/.dotnet/
+export PATH="$PATH:/home/arce/.dotnet/tools:$HOME/.dotnet"
+
+# zsh parameter completion for the dotnet CLI
+
+_dotnet_zsh_complete() 
+{
+  local completions=("$(dotnet complete "$words")")
+
+  # If the completion list is empty, just continue with filename selection
+  if [ -z "$completions" ]
+  then
+    _arguments '*::arguments: _normal'
+    return
+  fi
+
+  # This is not a variable assignment, don't remove spaces!
+  _values = "${(ps:\n:)completions}"
+}
+
+compdef _dotnet_zsh_complete dotnet
