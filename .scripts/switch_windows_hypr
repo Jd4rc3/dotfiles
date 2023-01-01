@@ -1,0 +1,6 @@
+#!/bin/bash
+
+hyprctl clients | awk  '{if($1 ~ /^(title)/) print $0}' \
+| awk  '{if($1 ~ /^(title)/) sub( /\t+title: +/, "" ,$0 ); print $0}' \
+| awk '{sub( /\(.*\)/, "", $0 ); print $0}' | wofi -d -I \
+| xargs -t -I {} hyprctl dispatch focuswindow title:"{}"
