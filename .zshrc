@@ -14,6 +14,7 @@ plugins=(
 	copybuffer
 	dirhistory
     extract
+    git-flow-completion
 	);
 
 source $ZSH/oh-my-zsh.sh
@@ -58,7 +59,7 @@ alias ws="cd ~/workspace"
 alias dw="cd ~/Downloads/"
 alias repos="cd ~/Downloads/.repos/"
 alias icat="kitty +kitten icat"                                               
-alias d="kitty +kitten diff"
+#alias d="kitty +kitten diff"
 alias za="zathura"
 alias p="python3"
 alias r="ranger"
@@ -72,14 +73,20 @@ alias todo="glow ~/Development/workspace/TODO.md"
 alias ntodo="nvim ~/Development/workspace/TODO.md"
 alias lg="lazygit"
 alias ld="lazydocker"
-alias hyprcfg="lvim ~/.config/hypr/hyprland.conf"
+alias hyprc="lvim ~/.config/hypr/hyprland.conf"
+alias kbinds="lvim ~/.config/hypr/keybinds.conf"
 alias wal="lvim ~/.config/hypr/hyprpaper.conf"
 alias lsgh="gh repo-fzf"
+alias dt="dotnet"
 
-#
+#ssh
 alias main="ssh-add -D && ssh-add ~/.ssh/edu"
 alias second="ssh-add -D && ssh-add ~/.ssh/id_ed25519"
 alias sofka="ssh-add -D && ssh-add ~/.ssh/sofka"
+
+#gitflow
+alias gffs="git flow feature start"
+alias gfff="git flow feature finish"
 
 #utilities
 alias cpu-status="auto-cpufreq --stats"
@@ -97,6 +104,8 @@ alias purge="sudo pacman -Rns $(pacman -Qtdq) ; sudo fstrim -av"
 alias aur-update="yay -Syu"
 
 alias pacman-update="sudo pacman -Syu"
+
+alias doff="sudo systemctl stop docker.socket"
 
 alias vm-on="sudo systemctl start libvirtd.service"
 
