@@ -107,6 +107,8 @@ alias pacman-update="sudo pacman -Syu"
 
 alias doff="sudo systemctl stop docker.socket"
 
+alias don="sudo systemctl start docker.socket"
+
 alias vm-on="sudo systemctl start libvirtd.service"
 
 alias vm-off="sudo systemctl stop libvirtd.service"
@@ -182,6 +184,14 @@ eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 #pygment config#
 ################
 #ZSH_COLORIZE_STYLE="colorful"
+#
+#Avoid duplicates
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
 
 ################
 #   EXPORTS    #
@@ -253,3 +263,7 @@ _dotnet_zsh_complete()
 }
 
 compdef _dotnet_zsh_complete dotnet
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
