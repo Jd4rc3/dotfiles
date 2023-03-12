@@ -75,14 +75,14 @@ alias lg="lazygit"
 alias ld="lazydocker"
 alias hyprc="lvim ~/.config/hypr/hyprland.conf"
 alias kbinds="lvim ~/.config/hypr/keybinds.conf"
-alias wal="lvim ~/.config/hypr/hyprpaper.conf"
+#alias wal="lvim ~/.config/hypr/hyprpaper.conf"
 alias lsgh="gh repo-fzf"
 alias dt="dotnet"
 
 #ssh
-alias main="ssh-add -D && ssh-add ~/.ssh/edu"
-alias second="ssh-add -D && ssh-add ~/.ssh/id_ed25519"
-alias sofka="ssh-add -D && ssh-add ~/.ssh/sofka"
+alias main="ssh-add -D && git config --global user.email "juandanielarce398@gmail.com" && ssh-add ~/.ssh/edu"
+alias second="ssh-add -D && git config --global user.email "juandanielarce398@gmail.com" && ssh-add ~/.ssh/id_ed25519"
+alias sofka="ssh-add -D && git config --global user.email "juan.arce@sofka.com.co" && ssh-add ~/.ssh/sofka"
 
 #gitflow
 alias gffs="git flow feature start"
@@ -225,8 +225,8 @@ fi
 #######
 #Pywal#
 #######
-#(cat ~/.cache/wal/sequences &)
-#source ~/.cache/wal/colors-tty.sh
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
 
 #######
 # fzf #
@@ -266,4 +266,4 @@ compdef _dotnet_zsh_complete dotnet
 
 
 # Load Angular CLI autocompletion.
-source <(ng completion script)
+#source <(ng completion script)
