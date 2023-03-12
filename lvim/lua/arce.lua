@@ -21,7 +21,7 @@ vim.cmd("let g:user_emmet_leader_key='<C-Q>'")
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
-    command = "prettier",
+    command = "rome",
     filetypes = { "typescript", "javascript", "html", "typescriptreact" },
   },
 }
