@@ -30,7 +30,7 @@ source $ZSH/oh-my-zsh.sh
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -51,7 +51,7 @@ alias mv="mv -vi"
 alias rm="rm -vi"
 alias current-milis="data +%s%3N"
 alias lv="lvim"
-alias vim="nvim"
+#alias vim="nvim"
 alias v="nvim"
 alias dot="cd ~/.dotfiles"
 alias kat="bat"
