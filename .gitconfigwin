@@ -1,0 +1,27 @@
+[user]
+	name = Juan Daniel
+	email = juandanielarce398@gmail.com
+[core]
+	editor = nvim
+	sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+[init]
+	defaultBranch = main
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	ps = push
+	pl = pull
+	l = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	l1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git l1"
+	s = status
+	last = log -1 HEAD
+	visual = !gitk
+[protocol "file"]
+	allow = always
+[credential "helperselector"]
+	selected = store
+[pull]
+	rebase = false
