@@ -3,6 +3,7 @@
 	email = juandanielarce398@gmail.com
 [core]
 	editor = nvim
+	pager = diff-so-fancy | bat --tabs=4 --pager \"less -RFX\"
 [init]
 	defaultBranch = main
 [alias]
@@ -16,5 +17,13 @@
 	l1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 	lg = !"git l1"
 	s = status
+	last = log -1 HEAD
+	visual = !gitk
 [protocol "file"]
 	allow = always
+[credential "helperselector"]
+	selected = store
+[pull]
+	rebase = false
+[interactive]
+	diffFilter = diff-so-fancy --patch
