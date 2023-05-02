@@ -31,9 +31,16 @@ eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 export PATH="$HOME/.scripts:$PATH"
 
 # Completions from brew
-for file in /home/linuxbrew/.linuxbrew/etc/bash_completion.d/*; do
-    source "$file"
-done
+# for file in /home/linuxbrew/.linuxbrew/share/zsh/site-functions/*; do
+#     source "$file"
+# done
+
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:/home/linuxbrew/.linuxbrew/share/zsh/site-functions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
