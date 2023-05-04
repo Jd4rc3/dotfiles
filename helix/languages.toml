@@ -1,0 +1,47 @@
+[[language]]
+name = "rust"
+auto-format = true
+
+[[language]]
+name = "java"
+scope = "source.java"
+injection-regex = "java"
+file-types = ["java"]
+roots = ["mvnw", "gradlew", "pom.xml", "build.gradle"]
+indent = { tab-width = 2, unit = "    " }
+language-server = { command = "jdtls", args = ["--jvm-arg=-javaagent:/home/linuxbrew/.linuxbrew/Cellar/jdtls/1.23.0/libexec/lombok.jar"] }
+
+[[language]]
+name = "javascript"
+scope = "source.js"
+injection-regex = "(js|javascript)"
+file-types = ["js", "mjs", "cjs"]
+shebangs = ["node"]
+roots = []
+comment-token = "//"
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "javascript" }
+indent = { tab-width = 2, unit = "  " }
+
+
+[[language]]
+name = "typescript"
+scope = "source.ts"
+injection-regex = "(ts|typescript)"
+file-types = ["ts", "tsx", "d.ts"]
+roots = []
+comment-token = "//"
+language-server = { command = "typescript-language-server", args = ["--stdio"], language-id = "typescript" }
+indent = { tab-width = 2, unit = "  " }
+
+[language.debugger]
+name = "node-debug2"
+command = "node"
+transport = "stdio"
+quirks = { absolute-paths = true }
+args = ["C:\\Users\\ASUS\\workspace\\language_servers\\vscode-js-debug-main\\src\\vsDebugServer.js"]
+
+[[language.debugger.templates]]
+name = "source"
+request = "launch"
+completion = [ { name = "main", completion = "filename", default = "index.js" } ]
+args = { program = "{0}" }
