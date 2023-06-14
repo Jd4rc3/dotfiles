@@ -1,2 +1,2 @@
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 source ~/.dotfiles/zsh/alias.sh
