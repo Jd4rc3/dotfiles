@@ -1,0 +1,1 @@
+scoop install $(Get-Content -Path .\installed_packages.txt)
