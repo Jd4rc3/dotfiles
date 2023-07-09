@@ -1,0 +1,9 @@
+atuin v14.0.0:
+    atuin.exe
+pueue v3.1.2:
+    pueue.exe
+    pueued.exe
+tauri-cli v1.4.0:
+    cargo-tauri.exe
+trunk v0.17.1:
+    trunk.exe
