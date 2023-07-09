@@ -8,15 +8,15 @@ if (Test-Path $gitConfigPath) {
     switch ($profileName) {
         "personal" {
             $newEmail = "juandanielarce398@gmail.com"
-            $newSshKey = "C:\Users\ASUS\.sshPersonal\personal"
+            $newSshKey = "$HOME\.sshPersonal\personal"
         }
         "sofka" {
             $newEmail = "juan.arce@sofka.com.co"
-            $newSshKey = "C:\Users\ASUS\.ssh\exito"
+            $newSshKey = "$HOME\.ssh\exito"
         }
         "edu" {
             $newEmail = "jdarce91@misena.edu.co"
-            $newSshKey = "C:\Users\ASUS\.sshPersonal\edu"
+            $newSshKey = "$HOME\.sshPersonal\edu"
         }
         default { Write-Host "Perfil no válido"; exit }
     }
