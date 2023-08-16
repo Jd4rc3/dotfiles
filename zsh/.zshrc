@@ -1,5 +1,5 @@
 # Created by Zap installer
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/zap-prompt"
@@ -29,10 +29,10 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 
 ##SSH
-eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
+#eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 
 # Exports
-export PATH="$HOME/.scripts:$PATH"
+export PATH=$HOME/.scripts:$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
 
 # Completions from brew
 # for file in /home/linuxbrew/.linuxbrew/share/zsh/site-functions/*; do
@@ -54,11 +54,8 @@ source ~/.dotfiles/fzf/settings
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 #########################
 #Add .NET Core SDK tools#
@@ -68,7 +65,7 @@ export PATH="$PATH:/home/arce/.dotnet/tools:$HOME/.dotnet"
 
 # zsh parameter completion for the dotnet CLI
 
-_dotnet_zsh_complete() 
+_dotnet_zsh_complete()
 {
   local completions=("$(dotnet complete "$words")")
 
@@ -86,3 +83,35 @@ _dotnet_zsh_complete()
 compdef _dotnet_zsh_complete dotnet
 
 alias nuget="mono /usr/local/bin/nuget.exe"
+#########################
+eval "$(zoxide init zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+############# pywal
+(cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+
+############# pomodoro
+declare -A pomo_options
+pomo_options["work"]="25"
+pomo_options["break"]="5"
+
+pomodoro () {
+  if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
+  val=$1
+  echo $val | lolcat
+  timer ${pomo_options["$val"]}m
+  spd-say "'$val' session done"
+  notify-send "Time's up"
+  fi
+}
+
+alias wo="pomodoro 'work'"
+alias br="pomodoro 'break'"
+
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
