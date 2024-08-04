@@ -15,14 +15,13 @@ alias p="python3"
 alias r="ranger"
 alias j="java -jar"
 alias y="yay"
-alias l="exa --icons -la"
-alias ls='exa --icons'
-alias ll='exa --icons -alh'
+alias l="eza --icons=always -la"
+alias ls='eza --icons=always'
+alias ll='eza --icons=always -alh'
 alias lg="lazygit"
 alias ld="lazydocker"
 alias calc="python3"
 alias cal="cal -m -y"
-alias z="zoxide"
 alias tree="erd -I"
 alias bashrc="nvim ~/.bashrc"
 alias aliases="nvim ~/.dotfiles/zsh/alias.sh"

@@ -1,94 +1,261 @@
-"$schema" = 'https://starship.rs/config-schema.json'
+format = """
+$directory\
+$aws\
+$git_branch\
+$git_state\
+$git_status\
+$battery\
+$buf\
+$c\
+$docker_context\
+$elixir\
+$golang\
+$java\
+$dotnet\
+$julia\
+$lua\
+$memory_usage\
+$nodejs\
+$package\
+$ruby\
+$rust\
+$scala\
+$zig\
+$cmd_duration\
+$memory_usage\
+$hostname\
+$character"""
 
-[line_break]
-disabled = true
+[directory]
+read_only = ' 󰌾'
+fish_style_pwd_dir_length = 1
+truncation_length = 3
+use_logical_path = true
+
+[character]
+success_symbol = '[❯](purple)'
+error_symbol = '[❯](red)'
+vimcmd_symbol = '[](green)'
+
+[git_status]
+format = '[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)'
+style = 'cyan'
+conflicted = '🏳'
+ahead = '⇡${count}'
+behind = '⇣${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
+[git_state]
+format = ' \([$state( $progress_current/$progress_total)]($style)\)'
+style = 'bright-black'
+
+[cmd_duration]
+format = ' [$duration]($style) '
+style = 'yellow'
+
+[python]
+format = ' [$virtualenv]($style) '
+style = 'bright-black'
+symbol = ' '
+
+[aws]
+format = '[$symbol($profile )(\($region\) )]($style)'
+symbol = ' '
+disabled = false
+
+[azure]
+format = ' [$symbol($subscription)]($style)'
+symbol = '󰠅 '
+disabled = false
 
 [battery]
-full_symbol = "🔋"
-charging_symbol = "🔌"
-discharging_symbol = "⚡"
+full_symbol = '󰁹 '
+charging_symbol = '󰂄 '
+discharging_symbol = '󰂃 '
+unknown_symbol = '󰁽 '
+empty_symbol = '󰂎 '
+format = ' [$symbol$percentage]($style) '
+disabled = false
+
+[[battery.display]]
+threshold = 80
+style = 'bold green'
+
+[[battery.display]]
+threshold = 50
+style = 'bold yellow'
 
 [[battery.display]]
 threshold = 30
-style = "bold red"
+style = 'bold red'
 
-[character]
-error_symbol = "[](bold red) "
-success_symbol = '[ ](bold green)'
+[buf]
+format = ' [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = '🦬 '
+detect_files = ['buf.yaml', 'buf.gen.yaml', 'buf.work.yaml']
+style = 'bright-white'
 
-[cmd_duration]
-min_time = 10_000  # Show command duration over 10,000 milliseconds (=10 sec)
-format = " took [$duration]($style)"
-
-[directory]
-truncation_length = 5
-format = "[$path]($style)[$lock_symbol]($lock_style) "
-
-[git_branch]
-format = " [$symbol$branch]($style) "
-symbol = "🍣 "
-style = "bold yellow"
-
-[git_commit]
-commit_hash_length = 8
-style = "bold white"
-
-[git_state]
-format = '[\($state( $progress_current of $progress_total)\)]($style) '
-
-[git_status]
-conflicted = "⚔️ "
-ahead = "🏎️ 💨 ×${count}"
-behind = "🐢 ×${count}"
-diverged = "🔱 🏎️ 💨 ×${ahead_count} 🐢 ×${behind_count}"
-untracked = "🛤️  ×${count}"
-stashed = "📦 "
-modified = "📝 ×${count}"
-staged = "🗃️  ×${count}"
-renamed = "📛 ×${count}"
-deleted = "🗑️  ×${count}"
-style = "bright-white"
-format = "$all_status$ahead_behind"
-
-[hostname]
-ssh_only = true
-format = "<[$hostname]($style)>"
-trim_at = "-"
-style = "bold dimmed white"
-disabled = true
-
-[julia]
-format = "[$symbol$version]($style) "
-symbol = "ஃ "
-style = "bold green"
-
-[memory_usage]
-format = "$symbol[${ram}( | ${swap})]($style) "
-threshold = 70
-style = "bold dimmed white"
+[bun]
+format = ' [$symbol($version )]($style) '
+version_format = 'v${raw}'
+symbol = '🍞 '
+detect_files = ['bun.lockb', 'bunfig.toml']
 disabled = false
 
-[package]
-disabled = true
+[c]
+symbol = ' '
+format = '[$symbol($version(-$name) )]($style)'
+version_format = 'v${raw}'
+detect_extensions = ['c', 'h']
+style = 'bold blue'
 
-[python]
-format = "[$symbol$version]($style) "
-style = "bold green"
+[conda]
+symbol = ' '
 
-[rust]
-format = "[$symbol$version]($style) "
-style = "bold green"
+[dart]
+symbol = ' '
 
-[time]
-time_format = "%T"
-format = "🕙 $time($style) "
-style = "bright-white"
-disabled = true
-show_always = false
+[docker_context]
+symbol = '🐳 '
+format = ' [$symbol$context]($style) '
 
-[username]
-style_user = "bold dimmed blue"
-show_always = false
+[elixir]
+symbol = ' '
+
+[elm]
+symbol = ' '
+
+[fossil_branch]
+symbol = ' '
+
+[git_branch]
+symbol = ' '
+
+[golang]
+format = ' [$symbol($version )]($style)'
+symbol = ' '
+
+[guix_shell]
+symbol = ' '
+
+[haskell]
+symbol = ' '
+
+[haxe]
+symbol = ' '
+
+[hg_branch]
+symbol = ' '
+
+[hostname]
+style = 'bold green'
+ssh_symbol = ' '
+
+[java]
+format = ' [${symbol}(${version} )]($style)'
+symbol = ' '
+
+[dotnet]
+symbol = ' '
+style = 'purple'
+heuristic = true
+format = ' [$symbol($version )($tfm )]($style)'
+
+[julia]
+symbol = ' '
+
+[lua]
+format = ' [$symbol($version )]($style)'
+symbol = ' '
+
+[memory_usage]
+symbol = '󰍛 '
+threshold = 75
+format = ' $symbol [${ram}( | ${swap})]($style) '
+
+[meson]
+symbol = '󰔷 '
+
+[nim]
+symbol = '󰆥 '
+
+[nix_shell]
+symbol = ' '
 
 [nodejs]
-format = "via [🤖 $version](bold green) "
+format = ' [$symbol($version )]($style)'
+symbol = ' '
+
+[os]
+format = ' [$symbol]($style)'
+disabled = false
+
+[os.symbols]
+Alpaquita = ' '
+Alpine = ' '
+Amazon = ' '
+Android = ' '
+Arch = ' '
+Artix = ' '
+CentOS = ' '
+Debian = ' '
+DragonFly = ' '
+Emscripten = ' '
+EndeavourOS = ' '
+Fedora = ' '
+FreeBSD = ' '
+Garuda = '󰛓 '
+Gentoo = ' '
+HardenedBSD = '󰞌 '
+Illumos = '󰈸 '
+Linux = ' '
+Mabox = ' '
+Macos = ' '
+Manjaro = ' '
+Mariner = ' '
+MidnightBSD = ' '
+Mint = ' '
+NetBSD = ' '
+NixOS = ' '
+OpenBSD = '󰈺 '
+openSUSE = ' '
+OracleLinux = '󰌷 '
+Pop = ' '
+Raspbian = ' '
+Redhat = ' '
+RedHatEnterprise = ' '
+Redox = '󰀘 '
+Solus = '󰠳 '
+SUSE = ' '
+Ubuntu = ' '
+Unknown = ' '
+Windows = '󰍲 '
+
+[package]
+format = ' [$symbol$version]($style)'
+symbol = '󰏗 '
+
+[pijul_channel]
+symbol = ' '
+
+[rlang]
+symbol = '󰟔 '
+
+[ruby]
+symbol = ' '
+
+[rust]
+symbol = ' '
+
+[scala]
+symbol = ' '
+
+[zig]
+format = ' [$symbol($version )]($style)'
