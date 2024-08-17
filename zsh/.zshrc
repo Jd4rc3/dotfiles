@@ -64,6 +64,7 @@
 #=============================fzf
   source <(fzf --zsh)
   source ~/.dotfiles/fzf/settings
+  bindkey '^r' fzf-history-widget
 #=============================fzf
 
 #nvm============================================================================================================================================================================
@@ -133,3 +134,6 @@
   export VITASDK=/usr/local/vitasdk
   export PATH=$VITASDK/bin:$PATH # add vitasdk tool to $PATH
 #VITASDK===========================================
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/tfenv/3.0.0/versions/1.3.5/terraform terraform
