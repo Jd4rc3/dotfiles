@@ -1,2 +1,4 @@
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export PATH=$HOME/.tmux/plugins/t-smart-tmux-session-manager/bin:$PATH
+source ~/.dotfiles/zsh/alias.sh
+export GTK_THEME=Adwaita-dark
+export ANDROID_HOME=$HOME/Android/Sdk/

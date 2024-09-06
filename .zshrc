@@ -45,15 +45,6 @@ fi
 ##SSH
 #eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 
-#Exports========================================================================================================================================================================================================
-  export WINHOME=/mnt/c/Users/arce
-  export SHIMBASE=/mnt/c/Users/arce/scoop/apps
-  export SHIMS=$SHIMBASE/win32yank/current
-  export GOPATH=$HOME/go
-  export GOBIN=$GOPATH/bin
-  export PATH=$SHIMS:$GOPATH:$GOBIN:$HOME/.scripts:$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
-#Exports========================================================================================================================================================================================================
-
 #=====================================================================================================HOMBREW
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -68,6 +59,10 @@ fi
 #PROMPT=======================
   eval "$(starship init zsh)"
 #PROMPT=======================
+
+#PYWAL
+  (cat ~/.cache/wal/sequences &)
+#PYWAL
 
 #=============================fzf
   source <(fzf --zsh)
