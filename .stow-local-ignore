@@ -1,0 +1,12 @@
+.git
+zsh
+.scripts
+scoop.json
+pacman-packages
+cargo-packages
+brew-packages
+aur-packages
+.gitignore
+.gitconfigwin
+bookmarks
+bash
