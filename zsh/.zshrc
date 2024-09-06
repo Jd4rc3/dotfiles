@@ -12,6 +12,12 @@
   eval "$(starship init zsh)"
 #PROMPT=======================
 
+#SSH============================
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+fi
+#SSH============================
+
 #Keybindings=======================
   bindkey "^U" backward-kill-line
 
