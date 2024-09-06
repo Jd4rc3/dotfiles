@@ -3,7 +3,8 @@
 	email = juandanielarce398@gmail.com
 [core]
 	editor = vim
-	pager = diff-so-fancy | bat --tabs=4 --pager \"less -RFX\"
+	pager = delta
+	autocrlf = input
 [init]
 	defaultBranch = main
 [alias]
@@ -26,7 +27,7 @@
 [pull]
 	rebase = true
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -42,3 +43,6 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[delta]
+	side-by-side = true
+
