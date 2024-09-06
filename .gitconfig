@@ -1,8 +1,8 @@
 [user]
-	name = Juan Daniel
+	name = Daniel
 	email = juandanielarce398@gmail.com
 [core]
-	editor = nvim
+	editor = vim
 	pager = diff-so-fancy | bat --tabs=4 --pager \"less -RFX\"
 [init]
 	defaultBranch = main
@@ -24,7 +24,7 @@
 [credential "helperselector"]
 	selected = store
 [pull]
-	rebase = false
+	rebase = true
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [color]

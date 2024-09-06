@@ -26,6 +26,7 @@ fontconfig
 freetds
 freetype
 fzf
+gcc
 gd
 gdb
 gdbm
@@ -43,6 +44,7 @@ htmlq
 htop
 icu4c
 imath
+isl
 jansson
 jpeg-turbo
 jpeg-xl
@@ -60,6 +62,7 @@ libgit2
 libgit2@1.7
 libgpg-error
 libidn2
+libmpc
 libnghttp2
 libnsl
 libpng
@@ -71,7 +74,9 @@ libtiff
 libtirpc
 libtool
 libunistring
+libuv
 libvmaf
+libvterm
 libxcrypt
 libxml2
 libxslt
@@ -80,16 +85,21 @@ libzip
 little-cms2
 llvm
 lm-sensors
+lpeg
 lsd
 lua
+luajit
 luarocks
+luv
 lz4
 m4
 mandoc
 mawk
 mpdecimal
 mpfr
+msgpack
 ncurses
+neovim
 nettle
 nvm
 oniguruma
@@ -120,6 +130,7 @@ tmux
 tree-sitter
 trivy
 unbound
+unibilium
 unixodbc
 unzip
 utf8proc
@@ -129,4 +140,5 @@ xz
 z3
 zlib
 zoxide
+zsh-completions
 zstd
