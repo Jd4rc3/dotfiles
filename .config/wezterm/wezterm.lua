@@ -23,6 +23,8 @@ config.window_padding = {
   bottom = 0,
 }
 
+config.window_decorations = "NONE"
+
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     -- config.term = "" -- Set to empty to FZF works on windows
     config.default_prog = { "C:\\Users\\arce\\scoop\\apps\\pwsh\\current\\pwsh.exe", "-NoLogo" }
