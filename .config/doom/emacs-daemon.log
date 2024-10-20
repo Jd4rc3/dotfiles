@@ -1,0 +1,20 @@
+
+Warning: due to a long standing Gtk+ bug
+https://gitlab.gnome.org/GNOME/gtk/issues/221
+Emacs might crash when run in daemon mode and the X11 connection is unexpectedly lost.
+Using an Emacs configured with --with-x-toolkit=lucid does not have this problem.
+Starting Doom Emacs in daemon mode...
+Loading /etc/emacs/site-start.d/00debian.el (source)...
+Loading /etc/emacs/site-start.d/00debian.el (source)...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...
+Loading debian-ispell (native compiled elisp)...
+Loading /var/cache/dictionaries-common/emacsen-ispell-default.el (source)...
+Loading /var/cache/dictionaries-common/emacsen-ispell-default.el (source)...done
+Loading debian-ispell (native compiled elisp)...done
+Loading /var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...
+Loading /var/cache/dictionaries-common/emacsen-ispell-dicts.el (source)...done
+Loading /etc/emacs/site-start.d/50dictionaries-common.el (source)...done
+Starting Emacs daemon.
+[yas] Check your `yas-snippet-dirs': /home/arce/.config/doom/snippets/ is not a directory
+[yas] Prepared just-in-time loading of snippets with some errors.  Check *Messages*.
+Doom loaded 127 packages across 31 modules in 2.244s
