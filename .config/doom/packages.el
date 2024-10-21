@@ -48,9 +48,20 @@
 ;; (unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
+(package! tree-sitter-langs)
+
+;;THEME
 (package! gruber-darker-theme)
+
+;;SHELL PACKAGES
 (package! powershell)
 (package! company-shell)
+
+;; DOCKER
 (package! docker-tramp)
 (package! dockerfile-mode)
-(package! tree-sitter-langs)
+
+;; C#
+(package! csproj-mode)
+(package! sharper)
+(package! sln-mode)

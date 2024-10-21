@@ -1,0 +1,52 @@
+#!/bin/bash
+
+baseDirectory="$1"
+
+# Función para obtener la última versión estable de un paquete
+get_latest_package_version() {
+    local packageId=$1
+    local url="https://api.nuget.org/v3-flatcontainer/$packageId/index.json"
+
+    # Obtener las versiones del paquete
+    versions=$(curl -s $url | jq -r '.versions[]')
+
+    # Filtrar las versiones estables (sin pre-release o sufijos)
+    latestStableVersion=$(echo "$versions" | grep -v '-' | sort -V | tail -n 1)
+
+    if [[ -z "$latestStableVersion" ]]; then
+        echo "No se pudo obtener la versión para el paquete: $packageId" >&2
+        return 1
+    fi
+
+    echo "$latestStableVersion"
+}
+
+# Buscar todos los archivos Directory.Packages.props en el directorio base y subdirectorios
+find "$baseDirectory" -name "Directory.Packages.props" | while read -r propsFile; do
+    echo "Procesando archivo: $propsFile"
+
+    # Cargar el contenido XML del archivo usando xmlstarlet
+    packagesUpdated=false
+
+    xmlstarlet sel -t -m '//PackageVersion' -v '@Include' -o ' ' -v '@Version' -n "$propsFile" | while read -r packageId currentVersion; do
+        latestVersion=$(get_latest_package_version "$packageId")
+
+        if [[ $? -eq 0 && "$latestVersion" != "$currentVersion" ]]; then
+            echo "Actualizando $packageId de $currentVersion a $latestVersion"
+
+            # Actualizar la versión en el archivo XML
+            xmlstarlet ed --inplace -u "//PackageVersion[@Include='$packageId']/@Version" -v "$latestVersion" "$propsFile"
+            packagesUpdated=true
+        else
+            echo "El paquete $packageId ya está en la última versión: $currentVersion"
+        fi
+    done
+
+    # Mostrar mensaje si los paquetes han sido actualizados
+    if [[ "$packagesUpdated" = true ]]; then
+        echo "Los paquetes han sido actualizados y el archivo $propsFile ha sido guardado."
+    else
+        echo "Todos los paquetes ya están en la última versión en el archivo $propsFile."
+    fi
+done
+
