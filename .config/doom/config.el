@@ -94,3 +94,11 @@
   :config
   (global-tree-sitter-mode)
   (use-package! tree-sitter-langs))
+
+
+;; ENV CONFIG
+(use-package! exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-envs '("PATH")))

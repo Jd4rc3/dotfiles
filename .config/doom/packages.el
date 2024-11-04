@@ -65,3 +65,8 @@
 (package! csproj-mode)
 (package! sharper)
 (package! sln-mode)
+
+;; ENV CONFIG
+(package! exec-path-from-shell)
+(package! envrc)
+(package! company-lsp)
