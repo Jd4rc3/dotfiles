@@ -61,6 +61,9 @@
 (package! docker-tramp)
 (package! dockerfile-mode)
 
+;;JSON
+(package! counsel-jq)
+
 ;; C#
 (package! csproj-mode)
 (package! sharper)

@@ -10,7 +10,8 @@ if [[ ! -z "$2" ]]
 fi
 
 cd $dir
-youtube-dl -x --audio-format mp3 "$1"
+#youtube-dl -x --audio-format mp3 "$1"
+yt-dlp -x --audio-format mp3 "$1"
 cd $startdir
 
 echo "File saved in: ""$dir"

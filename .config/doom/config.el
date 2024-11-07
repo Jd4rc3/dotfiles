@@ -102,3 +102,13 @@
   :config
   (exec-path-from-shell-initialize)
   (exec-path-from-shell-copy-envs '("PATH")))
+
+;; CSHARP
+;;(global-set-key (kbd "C-c n") 'sharper-main-transient)
+(use-package! sharper
+  :demand t
+  :bind
+  ("C-c n" . sharper-main-transient))
+
+(after! csharp-mode
+  (add-hook 'csharp-mode-hook #'lsp-deferred))

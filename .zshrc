@@ -61,12 +61,16 @@ fi
 #PROMPT=======================
 
 #PYWAL
+if command -v wal > /dev/null 2>&1; then
   (cat ~/.cache/wal/sequences &)
+fi
 #PYWAL
 
 #=============================fzf
+if command -v fzf > /dev/null 2>&1; then
   source <(fzf --zsh)
   source ~/.dotfiles/.config/fzf/settings
+fi
 #=============================fzf
 
 #nvm============================================================================================================================================================================
@@ -77,7 +81,7 @@ fi
 
 #.NET=========================================================================
   export DOTNET_ROOT=$HOME/.dotnet/
-  export PATH="$PATH:/home/arce/.dotnet/tools:$HOME/.dotnet"
+  export PATH="$PATH:$HOME/.dotnet/tools:$HOME/.dotnet"
 
   # zsh parameter completion for the dotnet CLI
   _dotnet_zsh_complete()
@@ -98,31 +102,23 @@ fi
 #.NET=========================================================================
 
 #ZOXIDE====================
+if command -v zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
+fi
 #ZOXIDE====================
+
+#spt====================
+if command -v spt > /dev/null 2>&1; then
+  eval "$(spt --completions zsh)"
+else
+  echo "spt is not installed"
+fi
+#spt====================
 
 #SDK_MAN================================================================================
   export SDKMAN_DIR="$HOME/.sdkman"
   [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 #SDK_MAN================================================================================
-
-#pomodoro=============================================
-  declare -A pomo_options
-  pomo_options["work"]="25"
-  pomo_options["break"]="5"
-
-  pomodoro () {
-    if [ -n "$1" -a -n "${pomo_options["$1"]}" ]; then
-    val=$1
-    echo $val | lolcat
-    timer ${pomo_options["$val"]}m
-    spd-say "'$val' session done"
-    notify-send "Time's up"
-    fi
-  }
-  alias wo="pomodoro 'work'"
-  alias br="pomodoro 'break'"
-#pomodoro=============================================
 
 #pnpm============================================
   export PNPM_HOME="/home/arce/.local/share/pnpm"
@@ -138,4 +134,7 @@ fi
 #VITASDK===========================================
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/tfenv/3.0.0/versions/1.3.5/terraform terraform
+
+if command -v terraform > /dev/null 2>&1; then
+  complete -o nospace -C /home/linuxbrew/.linuxbrew/Cellar/tfenv/3.0.0/versions/1.3.5/terraform terraform
+fi
