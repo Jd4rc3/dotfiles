@@ -85,6 +85,42 @@
      ;; (or  (executable-find "powershell"))
 )
 
+;; JAVA
+(use-package! lsp-mode
+  :config
+  (add-hook 'lsp-mode-hook #'lsp-lens-mode))
+
+(use-package! dap-mode
+  :after lsp-mode
+  :config
+  (dap-auto-configure-mode) ;; Habilita la configuracion automatica de dap-mode
+  (require 'dap-java))
+
+(map! :leader
+      :prefix ("d" . "dap")
+      :desc "Debug" "d" #'dap-debug
+      :desc "Debug restart" "r" #'dap-debug-restart
+      :desc "Go to locals" "l" #'dap-ui-locals
+      :desc "Go to sessions" "s" #'dap-ui-sessions)
+
+(use-package! lsp-java
+  :after lsp
+  :config
+  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
+
+(use-package! company-lsp
+  :after lsp
+  :config
+  (setq company-backends '(company-lsp)))
+
+(use-package! helm-lsp
+  :after (lsp-mode helm)
+  :config
+  (map! :leader
+        :desc "LSP Workspace Symbol" "c s" #'helm-lsp-workspace-symbol))
+
+;;(define-key lsp-mode-map [remap xref-find-apropos] #'helm-lsp-workspace-symbol)
+
 
 ;; tree-sitter config
 (setq +tree-sitter-hl-enabled-modes '(python-mode go-mode Dockerfile))
