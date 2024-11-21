@@ -77,30 +77,56 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+;;
+;;NODE
+(use-package dap-mode
+  :after lsp-mode
+  :config
+  )   ; Descarga automáticamente 'vscode-node-debug2' si no está instalado
+
+
+;; POWERSHELL
 (use-package! powershell
   :mode ("\\.ps1\\'" . powershell-mode)
   :config
+  (setq powershell-indent 4)
   (setq powershell-location-of-exe
         (executable-find "pwsh"))
      ;; (or  (executable-find "powershell"))
 )
+
+(use-package! lsp-pwsh
+  :hook (powershell-mode . lsp-deferred)
+  :config
+  (setq lsp-pwsh-mseditorservices-path
+        (expand-file-name "~/.config/emacs/.local/etc/lsp/pwsh/PowerShellEditorServices/"))
+  (setq lsp-pwsh-mseditorservices-log-level "Normal"))
 
 ;; JAVA
 (use-package! lsp-mode
   :config
   (add-hook 'lsp-mode-hook #'lsp-lens-mode))
 
+;; DAP-MODE
 (use-package! dap-mode
   :after lsp-mode
   :config
-  (dap-auto-configure-mode) ;; Habilita la configuracion automatica de dap-mode
-  (require 'dap-java))
+  (dap-auto-configure-mode)
+  (require 'dap-java)
+  (require 'dap-pwsh)
+  (require 'dap-node)
+    (dap-node-setup))
 
 (map! :leader
       :prefix ("d" . "dap")
       :desc "Debug" "d" #'dap-debug
       :desc "Debug restart" "r" #'dap-debug-restart
       :desc "Go to locals" "l" #'dap-ui-locals
+      :desc "Toggle Breakpoint" "b" #'dap-breakpoint-toggle
+      :desc "Next" "n" #'dap-next
+      :desc "Continue" "c" #'dap-continue
+      :desc "In" "i" #'dap-step-in
+      :desc "Out" "o" #'dap-step-out
       :desc "Go to sessions" "s" #'dap-ui-sessions)
 
 (use-package! lsp-java
@@ -148,3 +174,7 @@
 
 (after! csharp-mode
   (add-hook 'csharp-mode-hook #'lsp-deferred))
+
+(use-package! discord-emacs
+  :config
+  (discord-enable))

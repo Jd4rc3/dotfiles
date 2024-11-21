@@ -54,8 +54,10 @@
 (package! gruber-darker-theme)
 
 ;;SHELL PACKAGES
-(package! powershell)
 (package! company-shell)
+
+;;POWERSHELL
+(package! powershell)
 
 ;; DOCKER
 (package! docker-tramp)
@@ -73,3 +75,7 @@
 (package! exec-path-from-shell)
 (package! envrc)
 (package! company-lsp)
+
+;; DISCORD
+(package! discord-emacs
+  :recipe (:host github :repo "simmsb/discord-emacs.el"))
