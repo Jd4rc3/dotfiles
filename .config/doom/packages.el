@@ -77,5 +77,7 @@
 (package! company-lsp)
 
 ;; DISCORD
-(package! discord-emacs
-  :recipe (:host github :repo "simmsb/discord-emacs.el"))
+(package! elcord)
+
+;;GRADLE
+(package! gradle-mode)

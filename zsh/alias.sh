@@ -32,3 +32,4 @@ alias startdocker="sudo systemctl start docker.service"
 alias maintenance="yay -Sc && sudo pacman -Scc"
 #alias pipx="python3 -m pipx"
 alias vrtviewer="virt-viewer --connect=qemu:///system --domain-name win10"
+alias socket-discord='socat UNIX-LISTEN:/tmp/discord-ipc-0,fork EXEC:"npiperelay.exe -ep -s //./pipe/discord-ipc-0",nofork'

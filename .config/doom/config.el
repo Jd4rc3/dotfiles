@@ -78,11 +78,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 ;;
-;;NODE
-(use-package dap-mode
-  :after lsp-mode
-  :config
-  )   ; Descarga automáticamente 'vscode-node-debug2' si no está instalado
 
 
 ;; POWERSHELL
@@ -103,9 +98,24 @@
   (setq lsp-pwsh-mseditorservices-log-level "Normal"))
 
 ;; JAVA
+(use-package! lsp-java-boot
+  :after lsp-mode
+  :config
+  (add-hook 'lsp-mode-hook #'lsp-lens-mode)
+  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
+
+(setq lsp-java-annotation-processors ["org.eclipse.jdt.annotation"])
+
+(setq lsp-java-configuration-runtimes '[
+  (:name "JavaSE-1.8" :path "/home/arce/.sdkman/candidates/java/8.0.432-tem")
+  (:name "JavaSE-17" :path "/home/arce/.sdkman/candidates/java/17.0.13-tem" :default t)
+    ])
+
+;;LSP GENERAL
 (use-package! lsp-mode
   :config
-  (add-hook 'lsp-mode-hook #'lsp-lens-mode))
+  (setq lsp-log-io t))
+  ;(add-hook 'lsp-mode-hook #'lsp-lens-mode)
 
 ;; DAP-MODE
 (use-package! dap-mode
@@ -129,11 +139,6 @@
       :desc "Out" "o" #'dap-step-out
       :desc "Go to sessions" "s" #'dap-ui-sessions)
 
-(use-package! lsp-java
-  :after lsp
-  :config
-  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
-
 (use-package! company-lsp
   :after lsp
   :config
@@ -149,7 +154,7 @@
 
 
 ;; tree-sitter config
-(setq +tree-sitter-hl-enabled-modes '(python-mode go-mode Dockerfile))
+(setq +tree-sitter-hl-enabled-modes '(python-mode go-mode Dockerfile java-mode powershell-mode csharp-mode))
 
 (use-package! tree-sitter
   :hook (prog-mode . tree-sitter-mode)
@@ -175,6 +180,24 @@
 (after! csharp-mode
   (add-hook 'csharp-mode-hook #'lsp-deferred))
 
-(use-package! discord-emacs
+;;DIRENV
+(use-package! envrc
   :config
-  (discord-enable))
+  (envrc-global-mode))
+
+;;HELM
+(setq helm-M-x-fuzzy-match t)  ;; Activa la coincidencia difusa
+(setq helm-M-x-requires-pattern nil)  ;; Permite seleccionar comandos sin necesidad de patrones previos
+(setq helm-display-header-line nil) ;; Desactivar la cabecera para mejorar la vista
+
+;;GRADLE
+(use-package! gradle-mode
+  :defer t
+  :config
+  (setq gradle-executable-path  "/home/arce/.sdkman/candidates/gradle/8.11.1/bin/gradle"))
+
+;; DISCORD
+(use-package! elcord
+  :config
+  (setq elcord-editor-icon "emacs_icon")
+  (elcord-mode))

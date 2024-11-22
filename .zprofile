@@ -1,6 +1,6 @@
 export WINHOME=/mnt/c/Users/arce
 export SHIMBASE=/mnt/c/Users/arce/scoop/apps
-export SHIMS=$SHIMBASE/win32yank/current
+export SHIMS=$SHIMBASE/win32yank/current:$SHIMBASE/npiperelay/current 
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export DOOMBIN=$HOME/.config/emacs/bin
@@ -16,4 +16,3 @@ export DOTNET_HOST_PATH=$HOME/.dotnet/dotnet
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 eval "$(direnv hook zsh)"
-
