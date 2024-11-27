@@ -67,6 +67,8 @@
     ])
 
 ;;LSP GENERAL
+
+
 (after! lsp-mode
   :config
 
