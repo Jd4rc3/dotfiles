@@ -53,9 +53,6 @@
 ;;THEME
 (package! gruber-darker-theme)
 
-;;SHELL PACKAGES
-(package! company-shell)
-
 ;;POWERSHELL
 (package! powershell)
 
@@ -70,14 +67,18 @@
 (package! csproj-mode)
 (package! sharper)
 (package! sln-mode)
+(package! omnisharp)
 
 ;; ENV CONFIG
 (package! exec-path-from-shell)
 (package! envrc)
-(package! company-lsp)
 
 ;; DISCORD
 (package! elcord)
 
 ;;GRADLE
 (package! gradle-mode)
+
+;; CAPE
+(package! cape)
+(package! tempel)

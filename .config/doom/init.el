@@ -21,12 +21,12 @@
        ;;layout            ; auie,ctsrnm is the superior home row
 
        :completion
-       company           ; the ultimate code completion backend
-       (corfu +orderless); complete with cap(f), cape and a flying feather!
-       helm              ; the *other* search engine for love and life
-       ;;ido             ; the other *other* search engine...
-       ;;ivy             ; a search engine for love and life
-       ;;vertico         ; the search engine of the future
+       ;;(company +childframe)             ; the ultimate code completion backend
+       (corfu +orderless +icons +dabbrev)  ; complete with cap(f), cape and a flying feather!
+       (helm +fuzzy)                       ; the *other* search engine for love and life
+       ;;ido                               ; the other *other* search engine...
+       ;;ivy                               ; a search engine for love and life
+       ;;vertico                           ; the search engine of the future
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -48,7 +48,7 @@
        ;;unicode           ; extended unicode support for various languages
        (vc-gutter +pretty) ; vcs diff in the fringe
        vi-tilde-fringe     ; fringe tildes to mark beyond EOB
-       ;;window-select     ; visually switch windows
+       window-select       ; visually switch windows
        workspaces          ; tab emulation, persistence & separate workspaces
        zen                 ; distraction-free coding or writing
 
@@ -91,12 +91,12 @@
        ;;collab            ; buffers with friends
        debugger            ; FIXME stepping through code, to help you add bugs
        direnv
-       docker
+       (docker +lsp)
        editorconfig        ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       lsp                 ; M-x vscode
+       (lsp +peek); M-x vscode
        magit               ; a git porcelain for Emacs
        make                ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
@@ -109,7 +109,7 @@
 
        :os
        (:if (featurep :system 'macos) macos)  ; improve compatibility with macOS
-       ;;tty               ; improve the terminal Emacs experience
+       tty               ; improve the terminal Emacs experience
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -119,7 +119,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       csharp              ; unity, .NET, and mono shenanigans
+       (csharp +dotnet +lsp +tree-sitter); unity, .NET, and mono shenanigans
        ;;data              ; config/data formats
        ;;(dart +flutter)   ; paint ui and not much else
        ;;dhall
@@ -173,7 +173,7 @@
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
        ;;web               ; the tubes
-       ;;yaml              ; JSON, but readable
+       yaml                ; JSON, but readable
        ;;zig               ; C, but simpler
 
        :email
