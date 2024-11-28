@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
+ (setq user-full-name "J Daniel Arce"
+       user-mail-address "juandanielarce398@gmail.com")
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 16))
 ;;(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font"))
@@ -67,8 +67,6 @@
     ])
 
 ;;LSP GENERAL
-
-
 (after! lsp-mode
   :config
 
@@ -120,7 +118,6 @@
   (global-tree-sitter-mode)
   (use-package! tree-sitter-langs))
 
-
 ;; ENV CONFIG
 (use-package! exec-path-from-shell
   :ensure t
@@ -157,6 +154,17 @@
 
 ;; LOOKUP ONLINE
 (setq browse-url-browser-function 'eww-browse-url)
+
+(defun eww-open-in-browser ()
+  "Open the current URL in the default web browser."
+  (interactive)
+  (let ((url (or (eww-current-url)
+                 (read-string "Enter URL: "))))
+    (message "Opening URL: %s" url)
+    (browse-url-default-browser url)))
+
+(map! :map eww-mode-map
+      :desc "Open in external browser" "M-o" #'eww-open-in-browser)
 
 ;; KEYMAPS
 (map! :leader
