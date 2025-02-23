@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
- (setq user-full-name "J Daniel Arce"
-       user-mail-address "juandanielarce398@gmail.com")
+(setq user-full-name "J Daniel Arce"
+      user-mail-address "juandanielarce398@gmail.com")
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font" :size 16))
 ;;(setq doom-big-font (font-spec :family "JetBrainsMono Nerd Font"))
@@ -37,9 +37,9 @@
   :config
   (setq powershell-indent 4)
   (setq powershell-location-of-exe
-        (executable-find "pwsh"))
-     ;; (or  (executable-find "powershell"))
-)
+        (executable-find "pwsh")))
+;; (or  (executable-find "powershell"))
+
 
 (use-package! lsp-pwsh
   :hook (powershell-mode . lsp-deferred)
@@ -62,9 +62,9 @@
 (setq lsp-java-vmargs '("-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx2G" "-Xms100m"))
 
 (setq lsp-java-configuration-runtimes '[
-  (:name "JavaSE-1.8" :path "/home/arce/.sdkman/candidates/java/8.0.432-tem")
-  (:name "JavaSE-17" :path "/home/arce/.sdkman/candidates/java/17.0.12-jbr" :default t)
-    ])
+                                        (:name "JavaSE-1.8" :path "/home/arce/.sdkman/candidates/java/8.0.432-tem")
+                                        (:name "JavaSE-17" :path "/home/arce/.sdkman/candidates/java/17.0.12-jbr" :default t)])
+
 
 ;;LSP GENERAL
 (after! lsp-mode
@@ -72,8 +72,8 @@
 
   (setq lsp-completion-trigger-characters '("."))
   (setq lsp-log-io t))
- ;; (setq lsp-completion-provider :none)
-  ;(add-hook 'lsp-mode-hook #'lsp-lens-mode)
+;; (setq lsp-completion-provider :none)
+                                        ;(add-hook 'lsp-mode-hook #'lsp-lens-mode)
 
 (use-package! tempel
   :bind (("M-+" . tempel-complete)
@@ -89,7 +89,8 @@
   (require 'dap-java)
   (require 'dap-pwsh)
   (require 'dap-node)
-    (dap-node-setup))
+  (require 'dap-go)
+  (dap-node-setup))
 
 (map! :leader
       :prefix ("d" . "dap")
@@ -169,3 +170,26 @@
 ;; KEYMAPS
 (map! :leader
       :desc "Kill buffer and window" "b k" #'kill-buffer-and-window)
+
+;; SPELL
+;;(setq ispell-dictionary "en_US,es_ES"
+;;      ispell-personal-dictionary "~/.dotfiles/.hunspell_personal")
+
+(map! :leader
+      :desc "Cambiar diccionario" "t S" #'ispell-change-dictionary)
+
+;; MIPS
+(use-package! mips-mode)
+
+;; ANGULAR
+;; Configuración de tide
+(use-package tide
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
+(use-package prettier-js
+  :hook ((js-mode . prettier-js-mode)
+         (typescript-mode . prettier-js-mode)
+         (web-mode . prettier-js-mode)))

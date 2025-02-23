@@ -57,6 +57,8 @@
 (package! powershell)
 
 ;; DOCKER
+(package! docker)
+(package! docker-compose-mode)
 (package! docker-tramp)
 (package! dockerfile-mode)
 
@@ -76,9 +78,17 @@
 ;; DISCORD
 (package! elcord)
 
-;;GRADLE
+;; GRADLE
 (package! gradle-mode)
 
 ;; CAPE
 (package! cape)
 (package! tempel)
+
+;; MIPS
+(package! mips-mode)
+
+;; ANGULAR
+(package! angular-mode)
+(package! prettier-js)
+(package! tide)
