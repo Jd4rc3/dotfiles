@@ -19,7 +19,6 @@ lazydocker
 lazygit
 lf
 llvm
-lsd
 luarocks
 neovim
 nvm
@@ -27,8 +26,6 @@ pipx
 python-setuptools
 ripgrep
 starship
-stow
 utf8proc
-wget
 zoxide
 zsh

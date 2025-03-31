@@ -8,6 +8,7 @@ brew-packages
 aur-packages
 .gitignore
 .gitconfigwin
+configuration.nix
 bookmarks
 bash
 .zshenvwsl
