@@ -10,62 +10,99 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
     ];
-
+  programs.nix-ld.enable = true;
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
   nixpkgs.config.allowUnfree = true;
+  # DOCKER
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+  };
+
+  users.extraGroups.docker.members = [ "arce" ];
+
+  programs.zsh.enable = true;
   users.users.arce = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ 
-      microsoft-edge
-      emacs30
-      jetbrains-toolbox
-      zsh
-      stow
-      git
-      spotify
-      ghostty
       awscli
+      azure-cli
       bashdb
       bat
+      cargo
+      chatterino2
+      cmakeMinimal
       curl
+      discord
+      dockfmt
+      dotnet-sdk
+      editorconfig-core-c
+      emacs30
       erdtree
       eza
       fd
+      fnm
+      fnm
       fzf
+      fzf
+      gcc
       gdb
+      ghostty
+      git
+      gnumake
+      go
       go
       hadolint
       hex
       htmlq
       htop
       imagemagick
+      jdk17
+      jetbrains-toolbox
       jq
       lazydocker
       lazygit
       llvm
+      llvmPackages_19.clang-unwrapped
       luarocks
+      microsoft-edge
       neovim
-      fnm
+      nerdfonts
+      onlyoffice-desktopeditors
+      pavucontrol
       pipx
+      powershell
+      python311
       ripgrep
+      shellcheck
+      shfmt
+      spotify
       starship
+      stow
+      terraform
+      tmux
+      unzip
       utf8proc
+      zed-editor
+      zip
       zoxide
-      zsh
      # GNOME
-      gnomeExtensions.space-bar
+      adw-gtk3
+      gnomeExtensions.appindicator
       gnomeExtensions.dash-to-dock
+      gnomeExtensions.space-bar
+      gnome-tweaks
     ];
   };
-  # virtualisation
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "arce" ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
-
 
   networking.hostName = "laptop-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -113,6 +150,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   programs.firefox.enable = true;
+
+  #FLATPAK
+  services.dbus.enable = true;
+  services.flatpak.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

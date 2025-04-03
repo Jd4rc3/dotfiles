@@ -10,6 +10,12 @@ ZVM_INIT_MODE=sourcing
   plug "jeffreytse/zsh-vi-mode"
 #ZAP_CONFIG===========================================================================================================
 
+#FNM============================
+if type fnm >/dev/null 2>&1; then
+  eval "$(fnm env)"
+fi
+#FNM============================
+
 #SSH============================
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval "$(ssh-agent -s)" > /dev/null
@@ -46,7 +52,9 @@ fi
 #eval `~/.scripts/ssh-agent-reuse.sh` &> /dev/null
 
 #=====================================================================================================HOMBREW
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ] ; then
+     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
 
   if type brew &>/dev/null; then
       FPATH=$(brew --prefix)/share/zsh-completions:/home/linuxbrew/.linuxbrew/share/zsh/site-functions:$FPATH
