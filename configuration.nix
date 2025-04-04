@@ -37,6 +37,7 @@
       chatterino2
       cmakeMinimal
       curl
+      delta
       discord
       dockfmt
       dotnet-sdk
@@ -157,6 +158,12 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+  environment.gnome.excludePackages = (with pkgs; [
+    epiphany # web browser
+    geary # email reader
+    gnome-console
+  ]);
+
   environment.systemPackages = [
     pkgs.vim
     pkgs.wget
