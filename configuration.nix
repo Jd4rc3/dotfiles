@@ -29,23 +29,25 @@
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ 
+      android-tools
       awscli
       azure-cli
       bashdb
       bat
       cargo
-      chatterino2
       cmakeMinimal
       curl
       delta
       discord
       dockfmt
+      dotnetPackages.Nuget
       dotnet-sdk
       editorconfig-core-c
       emacs30
       erdtree
       eza
       fd
+      ffmpeg-full
       fnm
       fnm
       fzf
