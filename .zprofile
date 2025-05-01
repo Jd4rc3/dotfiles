@@ -1,11 +1,13 @@
 export WINHOME=/mnt/c/Users/arce
+export LD_LIBRARY_PATH=/home/arce/.dotnet/data/usr/lib/x86_64-linux-gnu
 export SHIMBASE=/mnt/c/Users/arce/scoop/apps
 export SHIMS=$SHIMBASE/win32yank/current:$SHIMBASE/npiperelay/current 
 export GOPATH=$HOME/go
+export SSH_ASKPASS=/etc/profiles/per-user/arce/bin/ksshaskpass
 export GOBIN=$GOPATH/bin
 export DOOMBIN=$HOME/.config/emacs/bin
 export MASONBIN=$HOME/.local/share/nvim/mason/bin
-export PATH=$HOME/.dotnet:$DOOMBIN:$MASONBIN:$SHIMS:$GOPATH:$GOBIN:$HOME/.dotfiles/.scripts:$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
+export PATH=$HOME/.dotnet:$HOME/.dotnet/tools:$DOOMBIN:$MASONBIN:$SHIMS:$GOPATH:$GOBIN:$HOME/.dotfiles/.scripts:$HOME/.config/tmux/plugins/t-smart-tmux-session-manager/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:/home/arce/.local/share/JetBrains/Toolbox/scripts:$PATH
 export XDG_DATA_DIRS=/var/lib/flatpak/exports/share:/home/$USER/.local/share/flatpak/exports/share:$XDG_DATA_DIRS
 export ANDROID_HOME=$HOME/Android/Sdk/
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

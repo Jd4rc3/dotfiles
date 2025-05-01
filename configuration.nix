@@ -10,28 +10,47 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
     ];
+  fonts.packages = with pkgs; [ noto-fonts-color-emoji ];
   programs.nix-ld.enable = true;
+  programs.kdeconnect.enable = true;
+  security.pam.services.login.enableKwallet = true;
+  security.pam.services.sddm.enableKwallet = true;
+  security.pam.services.kde.enableKwallet = true;
+  #programs.nix-ld.libraries = with pkgs; [ xorg.libX11 xorg.libXcursor xorg.libXext xorg.libXrender xorg.libXt xorg.libXrandr xorg.libXext xorg.libXfixes xorg.libXi ];
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
   nixpkgs.config.allowUnfree = true;
   # DOCKER
-  virtualisation.docker = {
+ # virtualisation.docker = {
+ #   enable = false;
+ #   enableOnBoot = false;
+ # };
+
+  virtualisation.podman = {
     enable = true;
-    enableOnBoot = false;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
   };
 
   users.extraGroups.docker.members = [ "arce" ];
 
   programs.zsh.enable = true;
+  programs.steam.enable = true;
+  services.ratbagd.enable = true;
+  services.gsignond.enable = true;
+  services.gsignond.plugins = with pkgs; [ gsignondPlugins.oauth gsignondPlugins.sasl gsignondPlugins.mail ];
+
   users.users.arce = {
     isNormalUser = true;
     shell = pkgs.zsh;
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [ 
+      adw-gtk3
       android-tools
       awscli
-      azure-cli
+      #AZCLI
+      (azure-cli.withExtensions [ azure-cli.extensions.azure-devops ])
       bashdb
       bat
       cargo
@@ -41,25 +60,42 @@
       discord
       dockfmt
       dotnetPackages.Nuget
-      dotnet-sdk
+      dbeaver-bin
+      #dotnet-sdk
       editorconfig-core-c
       emacs30
+      element-desktop
+      pinentry-qt
+      kdePackages.ksshaskpass
+      kdePackages.kio-gdrive
+      kdePackages.kaccounts-providers
+      kdePackages.kaccounts-integration
+      kdePackages.ksystemlog
+      gsignondPlugins.oauth
       erdtree
+      vlc
       eza
       fd
       ffmpeg-full
       fnm
-      fnm
+      freerdp3
       fzf
       fzf
       gcc
       gdb
       ghostty
       git
+     # GNOME
+    # gnomeExtensions.appindicator
+    # gnomeExtensions.clipboard-history
+    # gnomeExtensions.dash-to-dock
+    # gnomeExtensions.space-bar
+    # gnome-tweaks
       gnumake
       go
       go
       hadolint
+      handbrake
       hex
       htmlq
       htop
@@ -69,6 +105,7 @@
       jq
       lazydocker
       lazygit
+      libtool
       llvm
       llvmPackages_19.clang-unwrapped
       luarocks
@@ -78,27 +115,27 @@
       onlyoffice-desktopeditors
       pavucontrol
       pipx
+     podman-desktop
       powershell
       python311
+      qbittorrent
       ripgrep
       shellcheck
       shfmt
       spotify
       starship
       stow
+      tealdeer
       terraform
       tmux
       unzip
       utf8proc
+      vscode
+      wl-clipboard
+      yt-dlp
       zed-editor
       zip
       zoxide
-     # GNOME
-      adw-gtk3
-      gnomeExtensions.appindicator
-      gnomeExtensions.dash-to-dock
-      gnomeExtensions.space-bar
-      gnome-tweaks
     ];
   };
 
@@ -106,8 +143,16 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  networking.hostName = "laptop-nixos"; # Define your hostname.
+
+
+  networking = {
+    hostName = "laptop-nixos";
+    extraHosts = ''
+      192.168.1.13 homelab
+    '';
+  };
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -128,13 +173,16 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    xkb.layout = "us";
+    xkb.options = "eurosign:e,caps:escape,compose:ralt";
+  };
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -160,18 +208,20 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.gnome.excludePackages = (with pkgs; [
-    epiphany # web browser
-    geary # email reader
-    gnome-console
-  ]);
+ # environment.gnome.excludePackages = (with pkgs; [
+ #   epiphany # web browser
+ #   geary # email reader
+ #   gnome-console
+ # ]);
 
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.wget
-    pkgs.ungoogled-chromium
+  environment.systemPackages = with pkgs; [
+    piper
+    vim
+    wget
+    ungoogled-chromium
+    qemu_full
   ];
-
+  
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

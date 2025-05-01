@@ -30,6 +30,10 @@
 ;;   `require' or `use-package'.
 ;; - `map!' for binding new keys
 
+;; DIRED CONFIFG
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (text-scale-set 4)))
 
 ;; POWERSHELL
 (use-package! powershell
