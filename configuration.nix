@@ -115,7 +115,8 @@
       onlyoffice-desktopeditors
       pavucontrol
       pipx
-     podman-desktop
+      podman-desktop
+      podman-compose
       powershell
       python311
       qbittorrent
@@ -215,6 +216,14 @@
  # ]);
 
   environment.systemPackages = with pkgs; [
+    (lutris.override {
+      extraLibraries =  pkgs: [
+        # List library dependencies here
+      ];
+      extraPkgs = pkgs: [
+         # List package dependencies here
+      ];
+    })
     piper
     vim
     wget
