@@ -10,7 +10,14 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
     ];
-  fonts.packages = with pkgs; [ noto-fonts-color-emoji ];
+
+  fonts.packages = with pkgs; [
+    noto-fonts-color-emoji
+    dejavu_fonts
+    liberation_ttf
+    freefont_ttf
+    cascadia-code
+  ];
   programs.nix-ld.enable = true;
   programs.kdeconnect.enable = true;
   security.pam.services.login.enableKwallet = true;
@@ -21,16 +28,10 @@
   nix.gc.dates = "weekly";
   nix.settings.experimental-features = [ "flakes" "nix-command" ];
   nixpkgs.config.allowUnfree = true;
-  # DOCKER
- # virtualisation.docker = {
- #   enable = false;
- #   enableOnBoot = false;
- # };
-
-  virtualisation.podman = {
+ # DOCKER
+  virtualisation.docker = {
     enable = true;
-    dockerCompat = true;
-    defaultNetwork.settings.dns_enabled = true;
+    enableOnBoot = false;
   };
 
   users.extraGroups.docker.members = [ "arce" ];
@@ -56,24 +57,18 @@
       cargo
       cmakeMinimal
       curl
+      dbeaver-bin
       delta
+      remmina
+      freerdp
       discord
       dockfmt
       dotnetPackages.Nuget
-      dbeaver-bin
       #dotnet-sdk
       editorconfig-core-c
-      emacs30
       element-desktop
-      pinentry-qt
-      kdePackages.ksshaskpass
-      kdePackages.kio-gdrive
-      kdePackages.kaccounts-providers
-      kdePackages.kaccounts-integration
-      kdePackages.ksystemlog
-      gsignondPlugins.oauth
+      emacs30
       erdtree
-      vlc
       eza
       fd
       ffmpeg-full
@@ -85,6 +80,7 @@
       gdb
       ghostty
       git
+      glab
      # GNOME
     # gnomeExtensions.appindicator
     # gnomeExtensions.clipboard-history
@@ -94,6 +90,7 @@
       gnumake
       go
       go
+      gsignondPlugins.oauth
       hadolint
       handbrake
       hex
@@ -103,6 +100,11 @@
       jdk17
       jetbrains-toolbox
       jq
+      kdePackages.kaccounts-integration
+      kdePackages.kaccounts-providers
+      kdePackages.kio-gdrive
+      kdePackages.ksshaskpass
+      kdePackages.ksystemlog
       lazydocker
       lazygit
       libtool
@@ -114,9 +116,8 @@
       nerdfonts
       onlyoffice-desktopeditors
       pavucontrol
+      pinentry-qt
       pipx
-      podman-desktop
-      podman-compose
       powershell
       python311
       qbittorrent
@@ -131,6 +132,7 @@
       tmux
       unzip
       utf8proc
+      vlc
       vscode
       wl-clipboard
       yt-dlp
