@@ -1,15 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    <home-manager/nixos>
+  ];
 
   fonts.packages = with pkgs; [
     noto-fonts-color-emoji
@@ -26,32 +28,32 @@
   #programs.nix-ld.libraries = with pkgs; [ xorg.libX11 xorg.libXcursor xorg.libXext xorg.libXrender xorg.libXt xorg.libXrandr xorg.libXext xorg.libXfixes xorg.libXi ];
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+  nix.settings.experimental-features = ["flakes" "nix-command"];
   nixpkgs.config.allowUnfree = true;
- # DOCKER
+  # DOCKER
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;
   };
 
-  users.extraGroups.docker.members = [ "arce" ];
+  users.extraGroups.docker.members = ["arce"];
 
   programs.zsh.enable = true;
   programs.steam.enable = true;
   services.ratbagd.enable = true;
   services.gsignond.enable = true;
-  services.gsignond.plugins = with pkgs; [ gsignondPlugins.oauth gsignondPlugins.sasl gsignondPlugins.mail ];
-
+  services.gsignond.plugins = with pkgs; [gsignondPlugins.oauth gsignondPlugins.sasl gsignondPlugins.mail];
+  programs.firefox.enable = true;
   users.users.arce = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ 
+    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
       adw-gtk3
       android-tools
       awscli
       #AZCLI
-      (azure-cli.withExtensions [ azure-cli.extensions.azure-devops ])
+      (azure-cli.withExtensions [azure-cli.extensions.azure-devops])
       bashdb
       bat
       cargo
@@ -81,12 +83,12 @@
       ghostty
       git
       glab
-     # GNOME
-    # gnomeExtensions.appindicator
-    # gnomeExtensions.clipboard-history
-    # gnomeExtensions.dash-to-dock
-    # gnomeExtensions.space-bar
-    # gnome-tweaks
+      # GNOME
+      # gnomeExtensions.appindicator
+      # gnomeExtensions.clipboard-history
+      # gnomeExtensions.dash-to-dock
+      # gnomeExtensions.space-bar
+      # gnome-tweaks
       gnumake
       go
       go
@@ -146,10 +148,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-
-
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  # Splash screen
+  boot.plymouth = {
+    enable = true;
+  };
   networking = {
     hostName = "laptop-nixos";
     extraHosts = ''
@@ -158,7 +161,7 @@
   };
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Bogota";
@@ -172,13 +175,13 @@
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
-#    useXkbConfig = true; # use xkb.options in tty.
+    #    useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = ["amdgpu"];
     xkb.layout = "us";
     xkb.options = "eurosign:e,caps:escape,compose:ralt";
   };
@@ -193,17 +196,99 @@
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR
+
   services.pipewire = {
     enable = true;
+    audio.enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
+
+    extraConfig.pipewire = {
+      "context.modules" = [
+        {
+          name = "libpipewire-module-bluetooth";
+          args = {
+            "bluez5.msbc-support" = true;
+            "bluez5.sbc-xq-support" = true;
+            "bluez5.bap-support" = true;
+            "bluez5.lc3plus-support" = true;
+            "bluez5.iso-support" = true;
+          };
+        }
+      ];
+    };
+
+    wireplumber = {
+      enable = true;
+      # Esta es la parte clave para tus Galaxy Buds
+      extraConfig.bluetooth = {
+        "bluez_monitor.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.headset-roles" = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]";
+          # Incluye el codec Samsung Scalable que usan los Galaxy Buds
+          "bluez5.codecs" = "[ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll samsung_scalable ]";
+          # Habilitar LE Audio
+          "bluez5.bap" = true;
+          "bluez5.lc3plus" = true;
+
+          # Mejorar compatibilidad
+          "bluez5.roles" = "[ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]";
+          "bluez5.keepalive-enabled" = true;
+          "bluez5.a2dp.ldac.quality" = "auto";
+          "bluez5.auto-connect" = "[ a2dp_sink hfp_ag bap_sink ]";
+        };
+      };
+    };
+  };
+
+  environment.etc = {
+    # Configuración para WirePlumber
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
+        ["bluez5.codecs"] = "[ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll samsung_scalable ]",
+
+        -- Habilitar LE Audio
+        ["bluez5.bap"] = true,
+        ["bluez5.lc3plus"] = true,
+
+        -- Mejorar compatibilidad
+        ["bluez5.roles"] = "[ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]",
+        ["bluez5.keepalive-enabled"] = true,
+        ["bluez5.a2dp.ldac.quality"] = "auto",
+        ["bluez5.auto-connect"] = "[ a2dp_sink hfp_ag bap_sink ]",
+      }
+    '';
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+        Class = "0x000100";
+        LEAudioEnable = true;
+        ISOEnable = true;
+        ControllerMode = "dual";
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
-  programs.firefox.enable = true;
 
   #FLATPAK
   services.dbus.enable = true;
@@ -211,28 +296,28 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
- # environment.gnome.excludePackages = (with pkgs; [
- #   epiphany # web browser
- #   geary # email reader
- #   gnome-console
- # ]);
+  # environment.gnome.excludePackages = (with pkgs; [
+  #   epiphany # web browser
+  #   geary # email reader
+  #   gnome-console
+  # ]);
 
   environment.systemPackages = with pkgs; [
     (lutris.override {
-      extraLibraries =  pkgs: [
+      extraLibraries = pkgs: [
         # List library dependencies here
       ];
       extraPkgs = pkgs: [
-         # List package dependencies here
+        # List package dependencies here
       ];
     })
     piper
+    easyeffects
     vim
     wget
     ungoogled-chromium
     qemu_full
   ];
-  
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -281,6 +366,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
-
