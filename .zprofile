@@ -1,3 +1,4 @@
+export MANPAGER='nvim --clean +Man!'
 export WINHOME=/mnt/c/Users/arce
 export LD_LIBRARY_PATH=/home/arce/.dotnet/data/usr/lib/x86_64-linux-gnu
 export SHIMBASE=/mnt/c/Users/arce/scoop/apps
