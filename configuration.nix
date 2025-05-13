@@ -80,6 +80,7 @@
       fzf
       gcc
       gdb
+      obs-studio
       ghostty
       git
       glab
