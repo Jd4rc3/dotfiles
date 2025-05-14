@@ -213,9 +213,7 @@
           args = {
             "bluez5.msbc-support" = true;
             "bluez5.sbc-xq-support" = true;
-            "bluez5.bap-support" = false;
-            "bluez5.lc3plus-support" = false;
-            "bluez5.iso-support" = true;
+            "bluez5.aac-support" = true;
           };
         }
       ];
@@ -223,50 +221,20 @@
 
     wireplumber = {
       enable = true;
-      # Esta es la parte clave para tus Galaxy Buds
       extraConfig.bluetooth = {
         "bluez_monitor.properties" = {
           "bluez5.enable-sbc-xq" = true;
           "bluez5.enable-msbc" = true;
           "bluez5.enable-hw-volume" = true;
           "bluez5.headset-roles" = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]";
-          # Incluye el codec Samsung Scalable que usan los Galaxy Buds
-          "bluez5.codecs" = "[ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll samsung_scalable ]";
-          # Habilitar LE Audio
-          "bluez5.bap" = false;
-          "bluez5.lc3plus" = false;
-
-          # Mejorar compatibilidad
-          "bluez5.roles" = "[ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]";
+          "bluez5.codecs" = "[ sbc sbc_xq aac ldac aptx aptx_hd samsung_scalable ]";
+          "bluez5.roles" = "[ a2dp_sink a2dp_source hsp_hs hsp_ag hfp_hf hfp_ag ]";
           "bluez5.keepalive-enabled" = true;
           "bluez5.a2dp.ldac.quality" = "auto";
-          "bluez5.auto-connect" = "[ a2dp_sink hfp_ag bap_sink ]";
+          "bluez5.auto-connect" = "[ a2dp_sink hfp_ag ]";
         };
       };
     };
-  };
-
-  environment.etc = {
-    # Configuración para WirePlumber
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-        ["bluez5.enable-sbc-xq"] = true,
-        ["bluez5.enable-msbc"] = true,
-        ["bluez5.enable-hw-volume"] = true,
-        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
-        ["bluez5.codecs"] = "[ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll samsung_scalable ]",
-
-        -- Habilitar LE Audio
-        ["bluez5.bap"] = true,
-        ["bluez5.lc3plus"] = true,
-
-        -- Mejorar compatibilidad
-        ["bluez5.roles"] = "[ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]",
-        ["bluez5.keepalive-enabled"] = true,
-        ["bluez5.a2dp.ldac.quality"] = "auto",
-        ["bluez5.auto-connect"] = "[ a2dp_sink hfp_ag bap_sink ]",
-      }
-    '';
   };
 
   hardware.bluetooth = {
@@ -275,10 +243,7 @@
     settings = {
       General = {
         Enable = "Source,Sink,Media,Socket";
-        Experimental = true;
-        Class = "0x000100";
-        LEAudioEnable = true;
-        ISOEnable = true;
+        Experimental = false;
         ControllerMode = "dual";
         FastConnectable = true;
       };
