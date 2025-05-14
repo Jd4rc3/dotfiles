@@ -213,8 +213,8 @@
           args = {
             "bluez5.msbc-support" = true;
             "bluez5.sbc-xq-support" = true;
-            "bluez5.bap-support" = true;
-            "bluez5.lc3plus-support" = true;
+            "bluez5.bap-support" = false;
+            "bluez5.lc3plus-support" = false;
             "bluez5.iso-support" = true;
           };
         }
@@ -233,8 +233,8 @@
           # Incluye el codec Samsung Scalable que usan los Galaxy Buds
           "bluez5.codecs" = "[ sbc sbc_xq aac ldac aptx aptx_hd aptx_ll samsung_scalable ]";
           # Habilitar LE Audio
-          "bluez5.bap" = true;
-          "bluez5.lc3plus" = true;
+          "bluez5.bap" = false;
+          "bluez5.lc3plus" = false;
 
           # Mejorar compatibilidad
           "bluez5.roles" = "[ a2dp_sink a2dp_source bap_sink bap_source hsp_hs hsp_ag hfp_hf hfp_ag ]";
