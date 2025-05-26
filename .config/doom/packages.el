@@ -62,6 +62,9 @@
 (package! docker-tramp)
 (package! dockerfile-mode)
 
+;; SHELL
+(package! realgud)
+
 ;;JSON
 (package! counsel-jq)
 
@@ -92,3 +95,6 @@
 (package! angular-mode)
 (package! prettier-js)
 (package! tide)
+
+;; DIAPOSITIVAS
+(package! org-tree-slide)

@@ -108,6 +108,9 @@
       :desc "Out" "o" #'dap-step-out
       :desc "Go to sessions" "s" #'dap-ui-sessions)
 
+(use-package! realgud
+  :defer t)
+
 (use-package! helm-lsp
   :after (lsp-mode helm)
   :config
@@ -197,3 +200,36 @@
   :hook ((js-mode . prettier-js-mode)
          (typescript-mode . prettier-js-mode)
          (web-mode . prettier-js-mode)))
+
+;; DIAPOSITIVAS
+(use-package! org-tree-slide
+  :after org
+  :config
+  ;; Tamaño de texto más grande durante la presentación
+  (defun my/org-slide-start ()
+    (org-display-inline-images)
+    (text-scale-increase 2))
+
+  (defun my/org-slide-stop ()
+    (text-scale-decrease 2))
+
+  (add-hook 'org-tree-slide-play-hook #'my/org-slide-start)
+  (add-hook 'org-tree-slide-stop-hook #'my/org-slide-stop)
+
+  ;; Opciones de navegación (puedes cambiar teclas si quieres)
+  (setq org-tree-slide-skip-outline-level 2)
+  (setq org-tree-slide-heading-emphasis t))
+
+(use-package! org-tree-slide
+  :after org
+  :config
+  (defun my/org-tree-slide-setup ()
+    (org-display-inline-images)
+    (text-scale-increase 2))
+
+  (defun my/org-tree-slide-cleanup ()
+    (org-remove-inline-images)
+    (text-scale-decrease 2))
+
+  (add-hook 'org-tree-slide-play-hook #'my/org-tree-slide-setup)
+  (add-hook 'org-tree-slide-stop-hook #'my/org-tree-slide-cleanup))

@@ -10,7 +10,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    <home-manager/nixos>
   ];
 
   fonts.packages = with pkgs; [
@@ -60,6 +59,7 @@
       cmakeMinimal
       curl
       dbeaver-bin
+      sleek
       delta
       remmina
       freerdp
@@ -76,6 +76,7 @@
       ffmpeg-full
       fnm
       freerdp3
+      kdePackages.kcalc
       fzf
       fzf
       gcc
@@ -146,6 +147,7 @@
   };
 
   # Use the systemd-boot EFI boot loader.
+  boot.tmp.cleanOnBoot = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 3;
   boot.loader.efi.canTouchEfiVariables = true;
