@@ -201,6 +201,11 @@
          (typescript-mode . prettier-js-mode)
          (web-mode . prettier-js-mode)))
 
+;; EDITOR
+(setq +format-on-save-disabled-modes
+      '(dockerfile-mode)
+      )
+
 ;; DIAPOSITIVAS
 (use-package! org-tree-slide
   :after org
