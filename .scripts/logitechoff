@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -e
+
+DEVICE="Logitech G733 Gaming Headset" #logitech g733
+
+for i in 0 1; do
+     ratbagctl "$DEVICE" led "$i" set mode off 2>/dev/null
+done
