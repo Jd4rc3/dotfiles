@@ -1,6 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
   config,
   lib,
@@ -8,7 +5,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -18,6 +14,12 @@
     liberation_ttf
     freefont_ttf
     cascadia-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.agave
+    nerd-fonts.iosevka
+    nerd-fonts.blex-mono
+    nerd-fonts.gohufont
+    nerd-fonts.terminess-ttf
   ];
   programs.nix-ld.enable = true;
   programs.kdeconnect.enable = true;
@@ -40,8 +42,6 @@
   programs.zsh.enable = true;
   programs.steam.enable = true;
   services.ratbagd.enable = true;
-  services.gsignond.enable = true;
-  services.gsignond.plugins = with pkgs; [gsignondPlugins.oauth gsignondPlugins.sasl gsignondPlugins.mail];
   programs.firefox.enable = true;
   users.users.arce = {
     isNormalUser = true;
@@ -49,8 +49,11 @@
     extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       adw-gtk3
+      gimp3-with-plugins
       android-tools
+      thunderbird
       awscli
+      kubernetes-helm
       #AZCLI
       (azure-cli.withExtensions [azure-cli.extensions.azure-devops])
       bashdb
@@ -59,12 +62,10 @@
       cmakeMinimal
       curl
       dbeaver-bin
-      sleek
       delta
-      remmina
-      freerdp
       discord
       dockfmt
+      minikube
       dotnetPackages.Nuget
       #dotnet-sdk
       editorconfig-core-c
@@ -75,13 +76,12 @@
       fd
       ffmpeg-full
       fnm
+      freerdp
       freerdp3
-      kdePackages.kcalc
       fzf
       fzf
       gcc
       gdb
-      obs-studio
       ghostty
       git
       glab
@@ -93,8 +93,6 @@
       # gnome-tweaks
       gnumake
       go
-      go
-      gsignondPlugins.oauth
       hadolint
       handbrake
       hex
@@ -106,6 +104,7 @@
       jq
       kdePackages.kaccounts-integration
       kdePackages.kaccounts-providers
+      kdePackages.kcalc
       kdePackages.kio-gdrive
       kdePackages.ksshaskpass
       kdePackages.ksystemlog
@@ -115,9 +114,8 @@
       llvm
       llvmPackages_19.clang-unwrapped
       luarocks
-      microsoft-edge
       neovim
-      nerdfonts
+      obs-studio
       onlyoffice-desktopeditors
       pavucontrol
       pinentry-qt
@@ -125,9 +123,12 @@
       powershell
       python311
       qbittorrent
+      remmina
       ripgrep
+      scrcpy
       shellcheck
       shfmt
+      sleek
       spotify
       starship
       stow
