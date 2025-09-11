@@ -36,7 +36,8 @@
     enable = true;
     enableOnBoot = false;
   };
-
+  # XBOX Controller
+  hardware.xpadneo.enable = true;
   users.extraGroups.docker.members = ["arce"];
 
   programs.zsh.enable = true;
@@ -46,20 +47,30 @@
   users.users.arce = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["wheel" "networkmanager"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "kvm" "libvirtd"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      adw-gtk3
+      stacer
+      brave
+      lens
+      gradle
+      appimage-run
       gimp3-with-plugins
       android-tools
+      wlvncc
       thunderbird
       awscli
+      kubectl
+      #oras
       kubernetes-helm
+      libreoffice-qt6-fresh
+      miller
       #AZCLI
       (azure-cli.withExtensions [azure-cli.extensions.azure-devops])
       bashdb
       bat
       cargo
       cmakeMinimal
+      multimarkdown
       curl
       dbeaver-bin
       delta
@@ -69,7 +80,6 @@
       dotnetPackages.Nuget
       #dotnet-sdk
       editorconfig-core-c
-      element-desktop
       emacs30
       erdtree
       eza
@@ -78,7 +88,6 @@
       fnm
       freerdp
       freerdp3
-      fzf
       fzf
       gcc
       gdb
@@ -116,15 +125,14 @@
       luarocks
       neovim
       obs-studio
-      onlyoffice-desktopeditors
       pavucontrol
       pinentry-qt
       pipx
       powershell
       python311
       qbittorrent
-      remmina
       ripgrep
+      virt-manager-qt
       scrcpy
       shellcheck
       shfmt
@@ -141,7 +149,6 @@
       vscode
       wl-clipboard
       yt-dlp
-      zed-editor
       zip
       zoxide
     ];
@@ -200,7 +207,6 @@
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # OR
-
   services.pipewire = {
     enable = true;
     audio.enable = true;
@@ -305,6 +311,12 @@
     enableUserService = true;
     enable = true;
   };
+
+   boot.kernelParams = [
+   "mem_sleep_default=deep"
+   "resume_offset=55636021"
+   "resume=/dev/disk/by-uuid/3e68de7d-e73e-4e33-8b04-2949e0ee1d16"
+   ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

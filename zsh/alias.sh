@@ -15,6 +15,7 @@ alias p="python3"
 alias r="ranger"
 alias j="java -jar"
 alias y="yay"
+alias k="kubectl"
 alias l="eza --icons=always -la"
 alias ls='eza --icons=always'
 alias ll='eza --icons=always -alh'

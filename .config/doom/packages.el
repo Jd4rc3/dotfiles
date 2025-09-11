@@ -52,6 +52,7 @@
 
 ;;THEME
 (package! gruber-darker-theme)
+(package! catppuccin-theme)
 
 ;;POWERSHELL
 (package! powershell)
