@@ -12,5 +12,5 @@ configuration.nix
 bookmarks
 bash
 .zshenvwsl
-flakes/
+flakes
 hardware-configuration.nix

@@ -1,7 +1,6 @@
 alias zshrc="nvim ~/.zshrc"
 alias cp="cp -v"
 alias mv="mv -vi"
-alias rm="rm -vi"
 alias lv="lvim"
 alias v="nvim"
 alias dotf="cd ~/.dotfiles"
@@ -35,3 +34,23 @@ alias maintenance="yay -Sc && sudo pacman -Scc"
 alias vrtviewer="virt-viewer --connect=qemu:///system --domain-name win10"
 alias socket-discord='socat UNIX-LISTEN:/tmp/discord-ipc-0,fork EXEC:"npiperelay.exe -ep -s //./pipe/discord-ipc-0",nofork'
 alias save-org="git add . && git commit -m '$(date '+%Y-%m-%d %H:%M:%S')' && git push"
+alias tl='trash-list'
+alias tr='trash-restore'
+alias te='trash-empty'
+
+
+rm() {
+    local args=()
+    for arg in "$@"; do
+        case "$arg" in
+            -r|-R|--recursive) args+=("--recursive") ;;
+            -f|--force)        args+=("--force") ;;
+            -v|--verbose)      args+=("--verbose") ;;
+            --*)               args+=("$arg") ;;     # pasar flags largos tal cual
+            -*)                ;;                    # ignorar flags no compatibles
+            *)                 args+=("$arg") ;;     # archivos
+        esac
+    done
+    trash "${args[@]}"
+}
+
